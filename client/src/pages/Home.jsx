@@ -4,6 +4,7 @@ import "./style.css";
 import { Input, TextArea } from '../components/form/Form';
 import CardSave from '../components/cards/CardSave';
 import { Col, Row } from "../components/Grid";
+import Calendar from '../components/calendar/Calendar';
 const Home = () => {
   return (
     <div>
@@ -22,6 +23,7 @@ const Home = () => {
       <CardSave />
       </Row>
     </Col>
+    <Calendar />
       
       {/* <p style={{ fontSize: 20 }}>
         Passport.js contains support for over
