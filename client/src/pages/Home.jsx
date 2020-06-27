@@ -51,8 +51,6 @@ class Home extends Component {
     return (
       <div>
         <p className="page-title">Welcome to Nitinerary!</p>
-      <Col size="md-8">
-        <Row>
         <form>
           <Input
             value={this.state.name}
@@ -95,11 +93,9 @@ class Home extends Component {
 
         </form>
         <CardSave />
-        </Row>
-      </Col>
       <Calendar />
+    </div>
       
-      </div>
     );
   };
 }
