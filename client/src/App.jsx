@@ -16,6 +16,7 @@ const App = () => {
             </UserProvider>
             <Route path="/" exact component={Home} />
             <Route path="/" exact component={Footer} />
+            {/* <Route exact path="/plans" component={Plans} /> */}
         </Router>
     );
 };
