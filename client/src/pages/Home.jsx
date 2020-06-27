@@ -4,6 +4,8 @@ import "./style.css";
 import { Input, TextArea, FormBtn } from '../components/form/Form';
 import CardSave from '../components/cards/CardSave';
 import { Col, Row } from "../components/Grid";
+import Calendar from "../components/calendar/Calendar";
+
 import API from '../utils/API';
 class Home extends Component {
   state = {
@@ -49,8 +51,6 @@ class Home extends Component {
     return (
       <div>
         <p className="page-title">Welcome to Nitinerary!</p>
-      {/* <Col size="md-8"> */}
-        {/* <Row> */}
         <form>
           <Input
             value={this.state.name}
@@ -93,10 +93,9 @@ class Home extends Component {
 
         </form>
         <CardSave />
-        {/* </Row> */}
-      {/* </Col> */}
-       
-      </div>
+      <Calendar />
+    </div>
+      
     );
   };
 }
