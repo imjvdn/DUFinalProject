@@ -23,7 +23,8 @@ const CardSave = () => {
                 <Card.Text>
                     With supporting text below as a natural lead-in to additional content.
     </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <Button className="checked" variant="primary" type="checkbox">✔</Button>
+                <Button className="delete" variant="primary">✗</Button>
             </Card.Body>
         </Card>
     );

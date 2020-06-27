@@ -49,8 +49,8 @@ class Home extends Component {
     return (
       <div>
         <p className="page-title">Welcome to Nitinerary!</p>
-      <Col size="md-8">
-        <Row>
+      {/* <Col size="md-8"> */}
+        {/* <Row> */}
         <form>
           <Input
             value={this.state.name}
@@ -93,19 +93,9 @@ class Home extends Component {
 
         </form>
         <CardSave />
-        </Row>
-      </Col>
-        
-        {/* <p style={{ fontSize: 20 }}>
-          Passport.js contains support for over
-          <span style={{ color: 'var(--primary-red)' }}> 500+ </span>
-          Get started today with just a username and password for apps like
-          Facebook, Instagram, and Google.
-        </p> */}
-        {/* <Terminal userData={"passport.authenticate('facebook')"} selected="All" />
-        <p style={{ fontSize: 28 }}>Popular Strategies</p> */}
-        {/* <CardList />
-        <div style={{ marginBottom: 20 }} /> */}
+        {/* </Row> */}
+      {/* </Col> */}
+       
       </div>
     );
   };
