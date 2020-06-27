@@ -1,11 +1,11 @@
 import React from "react";
-import Card from "./Card";
+import Card from "./CardSave";
 import { data } from "../../data";
 
 const CardList = () => {
     return data.map(app => {
         return (
-            <Card {...app} key={app.name} />
+            <Card />
         );
     });
 };

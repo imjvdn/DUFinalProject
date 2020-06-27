@@ -1,11 +1,28 @@
 import React from 'react';
-import Terminal from '../components/displays/Terminal';
-import CardList from '../components/cards/CardList';
-
+// import Terminal from '../components/displays/Terminal';
+import "./style.css";
+import { Input, TextArea } from '../components/form/Form';
+import CardSave from '../components/cards/CardSave';
+import { Col, Row } from "../components/Grid";
 const Home = () => {
   return (
-    <div className="page" style={{ textAlign: 'center' }}>
+    <div>
       <p className="page-title">Welcome to Nitinerary!</p>
+    <Col size="md-8">
+      <Row>
+      <form>
+        <Input
+        placeholder="title"
+        >
+        </Input>
+        <TextArea placeholder="Description">
+
+        </TextArea>
+      </form>
+      <CardSave />
+      </Row>
+    </Col>
+      
       {/* <p style={{ fontSize: 20 }}>
         Passport.js contains support for over
         <span style={{ color: 'var(--primary-red)' }}> 500+ </span>
