@@ -4,6 +4,7 @@ import Terminal from '../components/displays/Terminal';
 import Col from '../components/wrappers/Col';
 import DataTags from '../components/menus/DataTags';
 import _ from 'lodash';
+import "./style.css";
 
 const LoginMsg = 'This can be a profile page';
 
@@ -17,7 +18,7 @@ const Profile = () => {
 
   return (
     <div className="page">
-      <p className="page-title" style={{ textAlign: 'center' }}>
+      <p className="page-title" style={{ textAlign: 'center'  }}>
         {text}
       </p>
 
