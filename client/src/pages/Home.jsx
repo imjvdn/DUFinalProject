@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 // import Terminal from '../components/displays/Terminal';
 import "./style.css";
 import { Input, TextArea, FormBtn } from '../components/form/Form';
+import { Link } from "react-router-dom";
 import CardSave from '../components/cards/CardSave';
-import { Col, Row } from "../components/Grid";
+import CardList from '../components/cards/CardList';
+
 import Calendar from "../components/calendar/Calendar";
 
 import API from '../utils/API';
@@ -12,9 +14,19 @@ class Home extends Component {
     name: "",
     description: "",
     search: "",
-    result: []
+    result: [],
+    plans: []
   };
-
+  componenetDidMount() {
+    this.loadPlans();
+  }
+  loadPlans = () => {
+    API.getPlans()
+    .then(res =>
+      this.setState({ plans: res.data, name: "", description: "" })
+      )
+      .catch(err => console.log(err));
+  }
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -49,8 +61,13 @@ class Home extends Component {
   }
   render() {
     return (
+
       <div>
         <p className="page-title-name">Welcome to Nitinerary!</p>
+
+      <div className="container">
+        <p className="page-title">Welcome to Nitinerary!</p>
+
         <form>
           <Input
             value={this.state.name}
@@ -92,7 +109,21 @@ class Home extends Component {
           </FormBtn>
 
         </form>
-        <CardSave />
+        <CardSave>
+          {this.state.plans.map(plan => (
+            <CardList key={plan._id}>
+              <Link to={"/plans/" + plan._id}>
+                <strong>
+                {plan.title}
+              </strong>
+              <h3>
+                {plan.description}
+              </h3>
+              </Link>
+              
+            </CardList>
+          ))}
+        </CardSave>
       <Calendar />
     </div>
       
