@@ -18,7 +18,7 @@ export function Input(props) {
   
   export function FormBtn(props) {
     return (
-      <button {...props} onClick={props.handleSearchSubmit} style={{ float: "right", marginBottom: 10 }} className="btn btn-secondary">
+      <button {...props} onClick={props.handleSearchSubmit} style={{ marginBottom: 10 }} className="btn btn-secondary">
         {props.children}
       </button>
     );
