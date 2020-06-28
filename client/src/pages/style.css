@@ -1,7 +1,42 @@
-.page-title {
-    text-align: center;
+#root {
+   background-image: url("https://image.shutterstock.com/image-photo/romantic-dinner-260nw-544363546.jpg");
+   background-size: cover;
+   width: 100%;
+   height: auto;
+   background-repeat: no-repeat;
+   background-position: center center;
 }
-/* .container {
-    margin-right: 2%;
-    margin-left: 6%;
-} */
+
+.page-title {
+    background-color: black;
+}
+
+.page-title-name {
+    text-align: center;
+    background-color: black;
+    color: #DA2929;
+    font-family: 'Great Vibes', cursive;
+    font-size: 75px;
+}
+
+.form-control {
+    text-align: center;
+    background-color: rgb(240, 222, 222);
+    color: black;
+    font-family: 'Great Vibes', cursive;
+    font-size: 25px;
+}
+
+.form-btn {
+    text-align: center;
+    background-color: #DA2929;
+    color: black;
+    font-family: 'Great Vibes', cursive;
+    font-size: 25px;
+    float: center;
+}
+
+  .form-group {
+    width: 33%;
+  }
+

@@ -1,5 +1,6 @@
 :root {
   --primary-red: #1a1e2c;
+  
 }
 
 body {
@@ -9,8 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #444444;
-  background-color: #fff7f7;
+
 }
 
 pre {
@@ -110,6 +110,7 @@ button {
   margin: 0 auto;
   background: white;
   border-radius: 6px;
+  
 }
 
 .title-bar {

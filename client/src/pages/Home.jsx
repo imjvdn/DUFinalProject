@@ -61,8 +61,13 @@ class Home extends Component {
   }
   render() {
     return (
+
+      <div>
+        <p className="page-title-name">Welcome to Nitinerary!</p>
+
       <div className="container">
         <p className="page-title">Welcome to Nitinerary!</p>
+
         <form>
           <Input
             value={this.state.name}

@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export function Input(props) {
     return (
       <div className="form-group">
@@ -18,7 +19,7 @@ export function Input(props) {
   
   export function FormBtn(props) {
     return (
-      <button {...props} onClick={props.handleSearchSubmit} style={{ marginBottom: 10 }} className="btn btn-secondary">
+      <button {...props} onClick={props.handleSearchSubmit} style={{ float: "center", marginBottom: 10 }} className="form-btn">
         {props.children}
       </button>
     );
