@@ -1,7 +1,15 @@
 .card {
     float: right;
     padding-bottom: 25%;
+    background-color: rgb(240, 222, 222);
+    color: black;
+    font-family: 'Great Vibes', cursive;
 }
 .checked {
     margin-right: 15px;
+}
+
+h2 {
+    color: black;
+    font-family: 'Great Vibes', cursive;
 }

@@ -5,9 +5,7 @@ import { Input, TextArea, FormBtn } from '../components/form/Form';
 import { Link } from "react-router-dom";
 import CardSave from '../components/cards/CardSave';
 import CardList from '../components/cards/CardList';
-
 import Calendar from "../components/calendar/Calendar";
-
 import API from '../utils/API';
 class Home extends Component {
   state = {
@@ -61,13 +59,11 @@ class Home extends Component {
   }
   render() {
     return (
-
       <div>
         <p className="page-title-name">Welcome to Nitinerary!</p>
-
       <div className="container">
-     
-
+       <div className="row">
+         <div className="col">
         <form>
           <Input
             value={this.state.name}
@@ -75,7 +71,6 @@ class Home extends Component {
             name="name"
             placeholder="Plan Name"
           />
-          
           <TextArea 
             value={this.state.description}
             onChange={this.handleInputChange}
@@ -90,7 +85,6 @@ class Home extends Component {
           >
             Save
           </FormBtn>
-
         </form>
         <form>
           <Input
@@ -107,8 +101,9 @@ class Home extends Component {
           >
             Search
           </FormBtn>
-
         </form>
+        </div>
+        <div className="col">
         <CardSave>
           {this.state.plans.map(plan => (
             <CardList key={plan._id}>
@@ -120,16 +115,16 @@ class Home extends Component {
                 {plan.description}
               </h3>
               </Link>
-              
             </CardList>
           ))}
         </CardSave>
+        </div>
+        </div>
       <Calendar />
-    </div>
-    </div>
-      
+      </div>
+      </div>
+
     );
   };
 }
-
 export default Home;

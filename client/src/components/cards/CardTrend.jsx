@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Nav, Card } from 'react-bootstrap';
-// import "./style.css";
+//  import "./style.css";
 const CardSave = () => {
     // const NAME = name.charAt(0).toUpperCase() + name.substring(1, name.length);
 
