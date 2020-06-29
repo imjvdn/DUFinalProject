@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import UserProvider from '../contexts/UserProvider';
-// import Terminal from '../components/displays/Terminal';
+// import { CreateBtn, TrendingBtn } from '../components/form/Form';
 import Calendar from "../components/calendar/Calendar";
 import { Row } from 'react-bootstrap';
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ProfileCard from '../components/cards/ProfileCard';
 import _ from 'lodash';
 import "./style.css";
@@ -27,13 +27,13 @@ const Profile = () => {
           <ProfileCard />
           <ProfileCard />
           <ProfileCard />
-          {/* <ProfileCard /> */}
           <Calendar />
+          <a className="create-btn" href="/">Plan a Night</a>
+          <a className="trend-btn" href="/">Trending Events</a>
       </Row>
-      {/* <div className="md-4">
-        <Calendar />
-      </div> */}
-
+      {/* <Row>
+        
+      </Row> */}
       <div style={{ marginBottom: 20 }} />
     </div>
   );
