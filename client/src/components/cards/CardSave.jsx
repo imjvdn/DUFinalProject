@@ -5,7 +5,7 @@ const CardSave = ({ children }) => {
     // const NAME = name.charAt(0).toUpperCase() + name.substring(1, name.length);
 
     return (
-        <Card>
+        <Card className="main-card">
             <Card.Header>
                 <Nav variant="tabs" defaultActiveKey="#first">
                     <h2> Your Nite-tinerary</h2>

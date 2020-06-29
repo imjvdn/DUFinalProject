@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
 import UserProvider from '../contexts/UserProvider';
-import Terminal from '../components/displays/Terminal';
-import Col from '../components/wrappers/Col';
-import DataTags from '../components/menus/DataTags';
+// import Terminal from '../components/displays/Terminal';
+import Calendar from "../components/calendar/Calendar";
+import { Row } from 'react-bootstrap';
+// import { Link } from "react-router-dom";
+import ProfileCard from '../components/cards/ProfileCard';
 import _ from 'lodash';
 import "./style.css";
 
@@ -18,24 +20,20 @@ const Profile = () => {
 
   return (
     <div className="page">
-      <p className="page-title" style={{ textAlign: 'center'  }}>
-        {text}
+      <p className="profile-title" style={{ textAlign: 'center' }}>
+        Your Nights ❤
       </p>
+      <Row>
+          <ProfileCard />
+          <ProfileCard />
+          <ProfileCard />
+          {/* <ProfileCard /> */}
+          <Calendar />
+      </Row>
+      {/* <div className="md-4">
+        <Calendar />
+      </div> */}
 
-      {/* <Col className="col-4" style={{ verticalAlign: "top" }}>
-                <DataTags
-                    options={options}
-                    onClick={option => setSelected(option)}
-                    selected={selected}
-                />
-            </Col> */}
-
-      {/* <Col className="col-8">
-                <Terminal
-                    userData={userData}
-                    selected={selected}
-                />
-            </Col> */}
       <div style={{ marginBottom: 20 }} />
     </div>
   );
