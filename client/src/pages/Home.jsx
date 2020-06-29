@@ -126,7 +126,7 @@ class Home extends Component {
         </CardSave>
       <Calendar />
     </div>
-      
+      </div>
     );
   };
 }
