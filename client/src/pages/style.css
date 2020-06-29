@@ -21,14 +21,14 @@
     font-size: 18px;
 }
 .profile-title {
-    color: rgb(216, 213, 213);
+    color: rgb(241, 241, 241);
     font-size: 65px;
     border: 2px solid rgb(0, 0, 0);
     border-radius: 5px;
-    background-color: #fd4a4a;
+    background-color: #942c5c;
     font-family: 'Amatic SC', cursive;
-    margin-left: 160px;
-    margin-right: 160px;
+    margin-left: 35%;
+    margin-right: 35%;
 }
 .page-title-name {
     text-align: center;
@@ -62,17 +62,23 @@
   border: 2px solid black;
   border-radius: 5px;
   background-color: rgb(146, 60, 172);
-  color: rgb(224, 224, 224);
+  color: rgb(233, 233, 233);
   padding: 8px;
   margin-top: -25px;
-  margin-left: 82%;
+  margin-left: 80%;
+  font-family: 'Martel', serif;
 }
 .trend-btn {
     border: 2px solid black;
   border-radius: 5px;
   background-color: rgb(146, 60, 172);
-  color: rgb(224, 224, 224);
+  color: rgb(233, 233, 233);
   padding: 8px;
   margin-top: -45px;
-  margin-left: 90%;
+  margin-left: 89%;
+  font-family: 'Martel', serif;
+}
+a:hover {
+    color: magenta;
+    text-decoration: magenta;
 }
