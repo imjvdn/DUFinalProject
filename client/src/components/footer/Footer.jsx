@@ -15,6 +15,10 @@ const Footer = () => {
         className="social-icon"
         buttonStyle={{ verticalAlign: 'sub' }}
       />
+        <div className="copyright">
+            Copyright 2020: Hill, Khamvongsa, Morrow, Richardson&copy;
+        </div>
+ 
     </div>
   );
 };

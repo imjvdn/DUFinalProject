@@ -60,7 +60,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <p className="page-title-name">Welcome to Nitinerary!</p>
+        <p className="page-title-name">Welcome to Nite-tinerary!</p>
       <div className="container">
        <div className="row">
          <div className="col">
