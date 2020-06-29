@@ -24,3 +24,18 @@ export function Input(props) {
       </button>
     );
   }
+
+  export function CreateBtn(props) {
+    return (
+      <button {...props} className="create-btn">
+        {props.children}
+      </button>
+    );
+  }
+  export function TrendingBtn(props) {
+    return (
+      <button {...props} onClick={props.onClick} className="trend-btn">
+        {props.children}
+      </button>
+    )
+  }
