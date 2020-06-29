@@ -6,7 +6,6 @@ export default {
         // return axios.get(BASEURL + query + "?apikey=" + APIKEY);
         return axios.get("https://app.ticketmaster.com/discovery/v2/events.json?keyword=" + query + "&apikey=" + APIKEY)
     },
-
     getPlans: function() {
         return axios.get("/api/plans");
     },
