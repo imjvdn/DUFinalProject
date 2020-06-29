@@ -8,7 +8,7 @@ const CardSave = ({ children }) => {
         <Card>
             <Card.Header>
                 <Nav variant="tabs" defaultActiveKey="#first">
-                    <h2> Your Nitinerary</h2>
+                    <h2> Your Nite-tinerary</h2>
                     <Nav.Item style={{ marginLeft: "55%" }}>
                         <Nav.Link href="#first">Saved</Nav.Link>
                     </Nav.Item>
