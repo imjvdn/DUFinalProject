@@ -61,12 +61,12 @@ class Home extends Component {
   }
   render() {
     return (
-
+      <div className="container">
       <div>
         <p className="page-title-name">Welcome to Nitinerary!</p>
 
-      <div className="container">
-        <p className="page-title">Welcome to Nitinerary!</p>
+    
+   
 
         <form>
           <Input
