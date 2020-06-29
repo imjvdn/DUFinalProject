@@ -10,7 +10,20 @@
 .page-title {
     background-color: black;
 }
-
+.page {
+    /* background-image: url("https://cdn.hipwallpaper.com/i/25/54/a3NTes.jpg"); */
+    padding-bottom: 60%;
+}
+.profile-title {
+    color: rgb(216, 213, 213);
+    font-size: 65px;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    background-color: #fd4a4a;
+    font-family: 'Amatic SC', cursive;
+    margin-left: 160px;
+    margin-right: 160px;
+}
 .page-title-name {
     text-align: center;
     background-color: black;

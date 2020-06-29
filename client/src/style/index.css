@@ -86,7 +86,7 @@ button {
   background: white;
   border-radius: 2px;
   display: inline-block;
-  margin-right: 2em;
+  margin-right: 1.5em;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   transition: all ease-in-out 0.6s;
 }
@@ -96,7 +96,7 @@ button {
 }
 
 .page {
-  width: 50%;
+  width: 95%;
   margin: 0 auto;
 }
 

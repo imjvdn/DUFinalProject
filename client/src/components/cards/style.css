@@ -1,12 +1,25 @@
-.card {
+.main-card {
     float: right;
     padding-bottom: 25%;
     background-color: rgb(240, 222, 222);
     color: black;
     font-family: 'Great Vibes', cursive;
 }
+.prof-card {
+    font-size: 20px;
+}
 .checked {
     margin-right: 15px;
+}
+.list-group-flush {
+    font-size: 15px;
+}
+.date-night-date {
+    color: rgb(75, 75, 250);
+    /* margin-right: 6px; */
+}
+.del-btn {
+    float: right;
 }
 
 h2 {
