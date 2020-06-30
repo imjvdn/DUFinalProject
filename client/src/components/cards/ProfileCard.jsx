@@ -3,7 +3,7 @@ import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 const ProfileCard = ({ props }) => {
     return (
-        <Card className="prof-card" style={{ width: '18rem' }}>
+        <Card className="prof-card" style={{ width: '16rem' }}>
             <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
             <Card.Body>
                 <Card.Title>Date Night Title</Card.Title>

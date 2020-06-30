@@ -6,6 +6,9 @@
   background-repeat: no-repeat;
   background-position: center center;
 }
+.row {
+    float: right;
+}
 
 .page-title {
   background-color: black;
@@ -65,7 +68,7 @@
   color: rgb(233, 233, 233);
   padding: 8px;
   margin-top: -25px;
-  margin-left: 80%;
+  margin-left: 61%;
   font-family: 'Martel', serif;
 }
 .trend-btn {
@@ -75,7 +78,7 @@
   color: rgb(233, 233, 233);
   padding: 8px;
   margin-top: -45px;
-  margin-left: 89%;
+  margin-left: 70%;
   font-family: 'Martel', serif;
 }
 a:hover {
