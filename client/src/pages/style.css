@@ -1,63 +1,63 @@
 #root {
-   background-image: url("https://bitesofbostonfoodtours.com/wp-content/uploads/2018/02/mountain-lake-lodge.jpg");
-   background-size: cover;
-   width: 100%;
-   height: auto;
-   background-repeat: no-repeat;
-   background-position: center center;
+  background-image: url('https://bitesofbostonfoodtours.com/wp-content/uploads/2018/02/mountain-lake-lodge.jpg');
+  background-size: cover;
+  width: 100%;
+  height: auto;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .page-title {
-    background-color: black;
+  background-color: black;
 }
 .page {
-    /* background-image: url("https://cdn.hipwallpaper.com/i/25/54/a3NTes.jpg"); */
-    padding-bottom: 60%;
+  /* background-image: url("https://cdn.hipwallpaper.com/i/25/54/a3NTes.jpg"); */
+  padding-bottom: 60%;
 }
 .card-title {
-    font-size: 25px;
+  font-size: 25px;
 }
 .card-text {
-    font-size: 18px;
+  font-size: 18px;
 }
 .profile-title {
-    color: rgb(241, 241, 241);
-    font-size: 65px;
-    border: 2px solid rgb(0, 0, 0);
-    border-radius: 5px;
-    background-color: #942c5c;
-    font-family: 'Amatic SC', cursive;
-    margin-left: 35%;
-    margin-right: 35%;
+  color: rgb(241, 241, 241);
+  font-size: 65px;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  background-color: #942c5c;
+  font-family: 'Amatic SC', cursive;
+  margin-left: 35%;
+  margin-right: 35%;
 }
 .page-title-name {
-    text-align: center;
-    background-color: black;
-    color: #DA2929;
-    font-family: 'Great Vibes', cursive;
-    font-size: 75px;
+  text-align: center;
+  background-color: black;
+  color: #da2929;
+  font-family: 'Great Vibes', cursive;
+  font-size: 75px;
 }
 
 .form-control {
-    text-align: center;
-    background-color: rgb(240, 222, 222);
-    color: black;
-    font-family: 'Great Vibes', cursive;
-    font-size: 25px;
+  text-align: center;
+  background-color: rgb(240, 222, 222);
+  color: black;
+  font-family: 'Great Vibes', cursive;
+  font-size: 25px;
 }
 
 .form-btn {
-    text-align: center;
-    background-color: #DA2929;
-    color: black;
-    font-family: 'Great Vibes', cursive;
-    font-size: 25px;
-    float: center;
+  text-align: center;
+  background-color: #da2929;
+  color: black;
+  font-family: 'Great Vibes', cursive;
+  font-size: 25px;
+  float: center;
 }
 
-  .form-group {
-    width: 100%;
-  }
+.form-group {
+  width: 100%;
+}
 .create-btn {
   border: 2px solid black;
   border-radius: 5px;
@@ -69,7 +69,7 @@
   font-family: 'Martel', serif;
 }
 .trend-btn {
-    border: 2px solid black;
+  border: 2px solid black;
   border-radius: 5px;
   background-color: rgb(146, 60, 172);
   color: rgb(233, 233, 233);
@@ -79,6 +79,6 @@
   font-family: 'Martel', serif;
 }
 a:hover {
-    color: magenta;
-    text-decoration: magenta;
+  color: magenta;
+  text-decoration: magenta;
 }

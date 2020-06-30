@@ -1,19 +1,21 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 // import Terminal from '../components/displays/Terminal';
-import "./style.css";
-import { Input, TextArea, FormBtn } from "../components/form/Form";
-import { Link } from "react-router-dom";
-import CardSave from "../components/cards/CardSave";
-import CardList from "../components/cards/CardList";
-import Calendar from "../components/calendar/Calendar";
-import ResultsCard from "../components/searchResults/results";
-import API from "../utils/API";
-import { Col } from  'react-bootstrap';
+import './style.css';
+import { Input, TextArea, FormBtn } from '../components/form/Form';
+import { Link } from 'react-router-dom';
+import CardSave from '../components/cards/CardSave';
+import CardList from '../components/cards/CardList';
+import Calendar from '../components/calendar/Calendar';
+import ResultsCard from '../components/searchResults/results';
+import API from '../utils/API';
+import { Col } from 'react-bootstrap';
+import Weather from '../src_weather/components/App';
+
 class Home extends Component {
   state = {
-    name: "",
-    description: "",
-    search: "",
+    name: '',
+    description: '',
+    search: '',
     result: [],
     plans: [],
   };
@@ -23,7 +25,7 @@ class Home extends Component {
   loadPlans = () => {
     API.getPlans()
       .then((res) =>
-        this.setState({ plans: res.data, name: "", description: "" })
+        this.setState({ plans: res.data, name: '', description: '' })
       )
       .catch((err) => console.log(err));
   };
@@ -54,7 +56,7 @@ class Home extends Component {
       .then((res) => {
         this.setState({
           result: res.data._embedded.events,
-          search: "",
+          search: '',
         });
         console.log(res.data._embedded.events);
       })
@@ -112,7 +114,7 @@ class Home extends Component {
               <CardSave>
                 {this.state.plans.map((plan) => (
                   <CardList key={plan._id}>
-                    <Link to={"/plans/" + plan._id}>
+                    <Link to={'/plans/' + plan._id}>
                       <strong>{plan.title}</strong>
                       <h3>{plan.description}</h3>
                     </Link>
@@ -122,18 +124,19 @@ class Home extends Component {
             </div>
           </div>
           <Col>
-          {this.state.result.map((result) => {
-            return(
-              <ResultsCard
-                name={result.name}
-                type={result.type}
-              >
-              </ResultsCard>
-            )
-          })}
+            {this.state.result.map((result) => {
+              return (
+                <ResultsCard
+                  name={result.name}
+                  type={result.type}
+                ></ResultsCard>
+              );
+            })}
           </Col>
-          
+
           <Calendar />
+
+          <Weather />
         </div>
       </div>
     );

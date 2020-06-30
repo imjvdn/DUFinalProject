@@ -1,5 +1,9 @@
 .footer {
-    clear: both;
-    background-color: #DA2929;
-    text-align: center;
+  clear: both;
+  background-color: #da2929;
+  text-align: center;
+}
+
+.social-icon {
+  color: #f0dede;
 }

@@ -1,5 +1,5 @@
 :root {
-  --primary-red: #da2929;
+  --primary-red: #722828;
 }
 
 body {
@@ -189,8 +189,8 @@ button {
 .footer {
   padding: 10px;
   border: 1px solid #d4d7dd;
-  background-color: #DA2929;
-  color: #45454d;
+  background-color: #722828;
+  color: #f0dede;
 }
 
 .social-icon {

@@ -2,7 +2,7 @@ import React from 'react';
 import IconLink from '../buttons/IconLink';
 import Github from '../../res/footer-github.png';
 import YouTube from '../../res/footer-youtube.png';
-import "./style.css";
+import './style.css';
 
 const Footer = () => {
   return (
@@ -15,10 +15,9 @@ const Footer = () => {
         className="social-icon"
         buttonStyle={{ verticalAlign: 'sub' }}
       />
-        <div className="copyright">
-            Copyright 2020: Hill, Khamvongsa, Morrow, Richardson&copy;
-        </div>
- 
+      <div className="copyright">
+        Copyright 2020: Hill, Khamvongsa, Morrow, Richardson&copy;
+      </div>
     </div>
   );
 };
