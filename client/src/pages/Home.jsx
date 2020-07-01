@@ -124,6 +124,7 @@ class Home extends Component {
             </div>
           </div>
           <Col>
+            {/* <Calendar /> */}
             {this.state.result.map((result) => {
               return (
                 <ResultsCard
@@ -132,6 +133,7 @@ class Home extends Component {
                 ></ResultsCard>
               );
             })}
+            
           </Col>
 
           <Calendar />
