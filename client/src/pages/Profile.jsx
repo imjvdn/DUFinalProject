@@ -3,7 +3,7 @@ import UserProvider from '../contexts/UserProvider';
 // import { CreateBtn, TrendingBtn } from '../components/form/Form';
 import Calendar from "../components/calendar/Calendar";
 import { Row } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import ProfileCard from '../components/cards/ProfileCard';
 import _ from 'lodash';
 import "./style.css";
@@ -23,7 +23,7 @@ const Profile = () => {
       <p className="profile-title" style={{ textAlign: 'center' }}>
         Your Nights ❤
       </p>
-      <Row>
+      <Row className="prof-row">
         
           <ProfileCard />
           <ProfileCard />
