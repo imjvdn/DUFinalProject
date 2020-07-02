@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
+const mongoose = require('mongoose');
 
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
@@ -15,6 +16,19 @@ const SpotifyStrategy = require('passport-spotify').Strategy;
 const TwitchStrategy = require('passport-twitch.js').Strategy;
 const keys = require('../config');
 const chalk = require('chalk');
+const Plan = require('../client/src/models/plan');
+
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/finalproject',
+  { useNewUrlParser: true },
+  function (err) {
+    if (err) {
+      console.err(err);
+    } else {
+      console.log('Connected');
+    }
+  }
+);
 
 let user = {};
 
@@ -42,8 +56,6 @@ passport.use(
   )
 );
 
-console.log('Hello, Facebook');
-
 // Amazon Strategy
 passport.use(
   new AmazonStrategy(
@@ -55,12 +67,34 @@ passport.use(
     (accessToken, refreshToken, profile, cb) => {
       console.log(chalk.blue(JSON.stringify(profile)));
       user = { ...profile };
-      return cb(null, profile);
+
+      console.log(profile.id);
+
+      console.log(Plan);
+
+      Plan.findOne({ username: profile.id }, (err, user) => {
+        console.log('Anything you want');
+        if (err) {
+          console.log('User.js post error: ', err);
+        } else if (user) {
+          console.log('User already exists', user);
+          return cb(null, profile);
+        } else {
+          const newUser = new Plan({
+            displayname: profile.displayName,
+            email: profile.emails[0].value,
+            username: profile.id,
+          });
+          console.log('New User', newUser);
+          newUser.save((err, savedUser) => {
+            if (err) return res.json(err);
+            return cb(null, profile);
+          });
+        }
+      });
     }
   )
 );
-
-console.log('Hello, GitHub');
 
 // Github Strategy
 passport.use(
@@ -137,18 +171,33 @@ passport.use(
     (accessToken, refreshToken, profile, cb) => {
       console.log(chalk.blue(JSON.stringify(profile)));
       user = { ...profile };
-      return cb(null, profile);
+
+      const { username, email } = req.body;
+      // ADD VALIDATION
+      User.findOne({ username: username }, (err, user) => {
+        if (err) {
+          console.log('User.js post error: ', err);
+        } else if (user) {
+          return cb(null, profile);
+        } else {
+          const newUser = new User({
+            displayname: profile.displayName,
+            email: profile.emails[0].value,
+            username: profile.username,
+          });
+          newUser.save((err, savedUser) => {
+            if (err) return res.json(err);
+            return cb(null, profile);
+          });
+        }
+      });
     }
   )
 );
 
-console.log('Hello, Twitch');
-
 const app = express();
 app.use(cors());
 app.use(passport.initialize());
-
-console.log('Hello, Dan');
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get(
@@ -261,8 +310,6 @@ if (process.env.NODE_ENV === 'production') {
     cert: certificate,
     ca: ca,
   };
-
-  console.log('Hello, Again');
 
   https.createServer(credentials, app).listen(443, () => {
     console.log('HTTPS Server running on port 443');
