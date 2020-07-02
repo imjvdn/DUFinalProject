@@ -97,6 +97,21 @@ passport.use(
 );
 
 // Github Strategy
+// passport.use(
+//   new GithubStrategy(
+//     {
+//       clientID: keys.GITHUB.clientID,
+//       clientSecret: keys.GITHUB.clientSecret,
+//       callbackURL: '/auth/github/callback',
+//     },
+//     (accessToken, refreshToken, profile, cb) => {
+//       console.log(chalk.blue(JSON.stringify(profile)));
+//       user = { ...profile };
+//       return cb(null, profile);
+//     }
+//   )
+// );
+
 passport.use(
   new GithubStrategy(
     {
@@ -107,12 +122,51 @@ passport.use(
     (accessToken, refreshToken, profile, cb) => {
       console.log(chalk.blue(JSON.stringify(profile)));
       user = { ...profile };
-      return cb(null, profile);
+
+      console.log(profile.id);
+
+      console.log(Plan);
+
+      Plan.findOne({ username: profile.id }, (err, user) => {
+        console.log('Anything you want');
+        if (err) {
+          console.log('User.js post error: ', err);
+        } else if (user) {
+          console.log('User already exists', user);
+          return cb(null, profile);
+        } else {
+          const newUser = new Plan({
+            displayname: profile.displayName,
+            email: profile.emails[0].value,
+            username: profile.id,
+          });
+          console.log('New User', newUser);
+          newUser.save((err, savedUser) => {
+            if (err) return res.json(err);
+            return cb(null, profile);
+          });
+        }
+      });
     }
   )
 );
 
 // Google Strategy
+// passport.use(
+//   new GoogleStrategy(
+//     {
+//       clientID: keys.GOOGLE.clientID,
+//       clientSecret: keys.GOOGLE.clientSecret,
+//       callbackURL: '/auth/google/callback',
+//     },
+//     (accessToken, refreshToken, profile, cb) => {
+//       console.log(chalk.blue(JSON.stringify(profile)));
+//       user = { ...profile };
+//       return cb(null, profile);
+//     }
+//   )
+// );
+
 passport.use(
   new GoogleStrategy(
     {
@@ -123,7 +177,31 @@ passport.use(
     (accessToken, refreshToken, profile, cb) => {
       console.log(chalk.blue(JSON.stringify(profile)));
       user = { ...profile };
-      return cb(null, profile);
+
+      console.log(profile.id);
+
+      console.log(Plan);
+
+      Plan.findOne({ username: profile.id }, (err, user) => {
+        console.log('Anything you want');
+        if (err) {
+          console.log('User.js post error: ', err);
+        } else if (user) {
+          console.log('User already exists', user);
+          return cb(null, profile);
+        } else {
+          const newUser = new Plan({
+            displayname: profile.displayName,
+            email: profile.emails[0].value,
+            username: profile.id,
+          });
+          console.log('New User', newUser);
+          newUser.save((err, savedUser) => {
+            if (err) return res.json(err);
+            return cb(null, profile);
+          });
+        }
+      });
     }
   )
 );
