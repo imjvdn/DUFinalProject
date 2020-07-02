@@ -44,7 +44,7 @@ function ResultsCard({ name, type, savedEvent, deleteEvent, link, id }) {
               <h3>
                 Type: {type}
               </h3>
-              <button className="getTickets" >Purchase Tickets</button>
+              <button className="getTickets"><a href="https://www.ticketmaster.com/">Purchase Tickets</a></button>
             </Row>
           </Col>
           <SaveBtn
