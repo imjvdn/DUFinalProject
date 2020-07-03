@@ -51,6 +51,14 @@ class Home extends Component {
       console.log(this.state.search)
     );
   };
+  handleSearchRestaurant = (event) => {
+    console.log("you are hitting here")
+    event.preventDefault();
+    this.searchRestaurant(
+      { search: event.target.value },
+      console.log(this.state.search)
+    );
+  };
   searchApi = (event) => {
     API.search(this.state.search)
       .then((res) => {
@@ -64,6 +72,21 @@ class Home extends Component {
         throw err;
       });
   };
+  searchRestaurant = (event) => {
+   
+    API.searchRestaurant(this.state.search)
+      .then((res) => {
+        this.setState({
+          result: res.data,
+          search: '',
+        });
+        console.log(res.data);
+        // console.log(result)
+      })
+      .catch((err) => {
+        throw err;
+      });
+  };
   render() {
     return (
       <div>
@@ -71,7 +94,7 @@ class Home extends Component {
         <div className="container">
           <div className="row">
             <div className="col">
-              <form>
+              <form >
                 <Input
                   value={this.state.name}
                   onChange={this.handleInputChange}
@@ -93,7 +116,7 @@ class Home extends Component {
                   Save
                 </FormBtn>
               </form>
-              <form>
+              <form >
                 <Input
                   value={this.state.search}
                   onChange={this.handleInputChange}
@@ -105,6 +128,21 @@ class Home extends Component {
                   value={this.state.search}
                   handleInputChange={this.handleInputChange}
                   handleSearchSubmit={this.handleSearchSubmit}
+                >
+                  Search
+                </FormBtn>
+                <Input
+                  value={this.state.search}
+                  onChange={this.handleInputChange}
+                  name="search"
+                  placeholder="Restaurant"
+                />
+                <FormBtn
+                  // disabled={!this.state.search}
+                  value={this.state.search}
+                  handleInputChange={this.handleInputChange}
+                
+                  handleSearchRestaurant={this.handleSearchRestaurant}
                 >
                   Search
                 </FormBtn>
@@ -123,8 +161,8 @@ class Home extends Component {
               </CardSave>
             </div>
           </div>
-          <Col>
-            {/* <Calendar /> */}
+          {/* <Col>
+            
             {this.state.result.map((result) => {
               return (
                 <ResultsCard
@@ -134,8 +172,8 @@ class Home extends Component {
               );
             })}
             
-          </Col>
-
+          </Col> */}
+     
           <Calendar />
 
           <Weather />
