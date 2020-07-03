@@ -12,14 +12,14 @@ export function Input(props) {
   export function TextArea(props) {
     return (
       <div className="form-group">
-        <textarea className="form-control" rows="6" {...props} />
+        <textarea className="form-control" rows="4" {...props} />
       </div>
     );
   }
   
   export function FormBtn(props) {
     return (
-      <button {...props} onClick={props.handleSearchSubmit} style={{ float: "center", marginBottom: 10 }} className="form-btn">
+      <button {...props} onClick={props.handleSearchRestaurant} style={{ float: "center", marginBottom: 10 }} className="form-btn">
         {props.children}
       </button>
     );
