@@ -42,7 +42,7 @@
 }
 
 .searchInput {
-  width: 100%;
+  width: 50%;
   display: inline-flex;
 }
 .form-control {
@@ -60,11 +60,32 @@
   color: black;
   font-family: 'Great Vibes', cursive;
   font-size: 25px;
+}
 
+.apibutton {
+  text-align: center;
+  margin-left: 10px;
+  display: inline-block;
+  background-color: #da2929 !important;
+  color: black;
+  font-family: 'Great Vibes', cursive;
+  font-size: 25px;
 }
 
 .form-group {
   width: 100%;
+ 
+}
+.apis {
+  width: 75%;
+  margin-bottom: 10px ;
+
+  display: inline-block;
+    text-align: center;
+    background-color: rgb(240, 222, 222);
+    color: black;
+    font-family: 'Great Vibes', cursive;
+    font-size: 25px;
 }
 .create-btn {
   border: 2px solid black;

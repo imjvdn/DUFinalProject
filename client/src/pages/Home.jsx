@@ -11,6 +11,7 @@ import API from '../utils/API';
 import { Col } from 'react-bootstrap';
 import Weather from '../src_weather/components/App';
 
+
 class Home extends Component {
   state = {
     name: '',
@@ -117,35 +118,35 @@ class Home extends Component {
                 </FormBtn>
               </form>
               <form >
-                <Input
+                <input className="apis"
                   value={this.state.search}
                   onChange={this.handleInputChange}
                   name="search"
                   placeholder="Event"
                 />
-                <FormBtn
+                <button className="apibutton"
                   disabled={!this.state.search}
                   value={this.state.search}
                   handleInputChange={this.handleInputChange}
                   handleSearchSubmit={this.handleSearchSubmit}
                 >
                   Search
-                </FormBtn>
-                <Input
+                </button>
+                <input className="apis"
                   value={this.state.search}
                   onChange={this.handleInputChange}
                   name="search"
                   placeholder="Restaurant"
                 />
-                <FormBtn
+                <button className="apibutton"
                   // disabled={!this.state.search}
                   value={this.state.search}
                   handleInputChange={this.handleInputChange}
-                
                   handleSearchRestaurant={this.handleSearchRestaurant}
                 >
                   Search
-                </FormBtn>
+                </button>
+                
               </form>
             </div>
             <div className="col">
