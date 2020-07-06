@@ -33,7 +33,7 @@ export default {
         // return axios.get(BASEURL + query + "?apikey=" + APIKEY);
         console.log(APIKEYTO);
         return axios.get("https://developers.zomato.com/api/v2.1/search?cuisines=" + query + "&apikey=" + APIKEYTO)
-    },
+    }
 
  
 }
