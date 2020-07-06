@@ -6,7 +6,7 @@ const MediumLabel = styled.h3`
   display: block;
   font-weight: ${({ weight }) => weight || '600'};
   font-size: ${({ fontSize }) => fontSize || '20px'};
-  text-align: ${({ align }) => align || 'left'};
+  text-align: ${({ align }) => align || 'center'};
   padding: 5px 0;
   ${({ firstToUpperCase }) =>
     firstToUpperCase &&

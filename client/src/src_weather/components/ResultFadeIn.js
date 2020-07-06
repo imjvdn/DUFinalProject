@@ -5,6 +5,7 @@ const ResultFadeIn = keyframes`
     opacity: 1;
         visibility: visible;
         top: 0;
+        margin-left: 500px;
   }
 `;
 

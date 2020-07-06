@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import SmallLabel from './SmallLabel';
 import Text from './Text';
 import device from '../responsive/Device';
+import { faAlignCenter } from '@fortawesome/free-solid-svg-icons';
 
 const ForecastWrapper = styled.div`
   flex-shrink: 0;
@@ -33,25 +34,13 @@ const WeatherIcon = styled.img`
   display: block;
   height: 50px;
   width: 50px;
-  margin: 0 auto;
+
 `;
 
 const ForecastHour = props => {
   const { temp, month, day, hour, icon } = props;
   const iconUrl = `https://openweathermap.org/img/w/${icon}.png`;
 
-  return (
-    <ForecastWrapper>
-      <Text align="center">
-        {month}.{day}
-      </Text>
-      <Text align="center">{hour}:00</Text>
-      <WeatherIcon src={iconUrl} />
-      <SmallLabel align="center" weight="400">
-        {temp}&#176;
-      </SmallLabel>
-    </ForecastWrapper>
-  );
 };
 
 ForecastHour.propTypes = {
