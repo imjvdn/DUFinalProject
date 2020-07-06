@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import Terminal from '../components/displays/Terminal';
 import './style.css';
-import { Input, TextArea, FormBtn } from '../components/form/Form';
+import { Input, TextArea, FormBtn, FormBtnRest } from '../components/form/Form';
 import { Link } from 'react-router-dom';
 import CardSave from '../components/cards/CardSave';
 import CardList from '../components/cards/CardList';
@@ -19,6 +19,7 @@ class Home extends Component {
     search: '',
     result: [],
     plans: [],
+    restaurant: ''
   };
   componenetDidMount() {
     this.loadPlans();
@@ -56,8 +57,8 @@ class Home extends Component {
     console.log("you are hitting here")
     event.preventDefault();
     this.searchRestaurant(
-      { search: event.target.value },
-      console.log(this.state.search)
+      { restaurant: event.target.value },
+      console.log(this.state.restaurant)
     );
   };
   searchApi = (event) => {
@@ -75,7 +76,7 @@ class Home extends Component {
   };
   searchRestaurant = (event) => {
    
-    API.searchRestaurant(this.state.search)
+    API.searchRestaurant(this.state.restaurant)
       .then((res) => {
         this.setState({
           result: res.data,
@@ -133,19 +134,19 @@ class Home extends Component {
                   Search
                 </button>
                 <input className="apis"
-                  value={this.state.search}
+                  value={this.state.restaurant}
                   onChange={this.handleInputChange}
-                  name="search"
+                  name="restaurant"
                   placeholder="Restaurant"
                 />
-                <button className="apibutton"
+                <FormBtnRest className="apibutton"
                   // disabled={!this.state.search}
-                  value={this.state.search}
+                  value={this.state.restaurant}
                   handleInputChange={this.handleInputChange}
                   handleSearchRestaurant={this.handleSearchRestaurant}
                 >
                   Search
-                </button>
+                </FormBtnRest>
                 
               </form>
             </div>
