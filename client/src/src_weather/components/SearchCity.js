@@ -6,21 +6,21 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import device from '../responsive/Device';
 
 const SearchBar = styled.form`
-  top: ${({ showResult }) => (showResult ? '0%' : '30%')};
+  top: ${({ showResult }) => (showResult )};
   position: relative;
-  margin: 0 auto;
-  max-width: 500px;
+  margin-left: 500px;
+  max-width: 600px;
   transition: 0.8s 0.5s;
   @media ${device.laptopL} {
-    max-width: 600px;
+    max-width: 400px;
   }
   @media ${device.desktop} {
-    max-width: 700px;
+    max-width: 500px;
   }
 `;
 
 const SearchInput = styled.input`
-  width: 100%;
+  width: 75%;
   border: none;
   background-color: #ffffff;
   font-size: 16px;

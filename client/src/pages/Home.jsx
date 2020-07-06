@@ -163,7 +163,7 @@ class Home extends Component {
               </CardSave>
             </div>
           </div>
-          {/* <Col>
+          <Col>
             
             {this.state.result.map((result) => {
               return (
@@ -172,13 +172,14 @@ class Home extends Component {
                   type={result.type}
                 ></ResultsCard>
               );
-            })}
-            
-          </Col> */}
-     
-          <Calendar />
-
-          <Weather />
+            })} 
+          </Col>
+        </div>
+        <div>
+        <Calendar />
+        </div>
+      <div className="weatherDiv">
+        <Weather />  
         </div>
       </div>
     );

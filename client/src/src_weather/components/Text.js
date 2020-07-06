@@ -5,7 +5,7 @@ const Text = styled.span`
   color: ${({ color }) => color || '#FFFFFF'};
   display: block;
   font-size: ${({ fontSize }) => fontSize || '12px'};
-  text-align: ${({ align }) => align || 'left'};
+  text-align: ${({ align }) => align || 'center'};
 
   ${({ firstToUpperCase }) =>
     firstToUpperCase &&

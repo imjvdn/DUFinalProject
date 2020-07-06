@@ -13,40 +13,38 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 import device from '../responsive/Device';
-import ForecastHour from './ForecastHour';
+
 import ResultFadeIn from './ResultFadeIn';
 import BigLabel from './BigLabel';
-import MediumLabel from './MediumLabel';
+
 import SmallLabel from './SmallLabel';
 import Text from './Text';
 
 const Results = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 40px 0;
+  padding: 10px 0;
   opacity: 0;
   visibility: hidden;
   position: relative;
-  top: 20px;
   animation: ${ResultFadeIn} 0.5s 1.4s forwards;
 `;
 
 const LocationWrapper = styled.div`
-  flex-basis: 100%;
+  flex-basis:50%;
+  padding: 30px;
+
 `;
 
 const CurrentWeatherWrapper = styled.div`
-  flex-basis: 100%;
+  flex-basis: 50%;
   display: grid;
   justify-content: center;
   align-items: center;
   grid-template-columns: auto 1fr;
-  margin: 20px 0;
-  grid-gap: 30px;
   @media ${device.mobileL} {
-    flex-basis: 50%;
-    padding-right: 10px;
+    flex-basis: 25%;
+  
   }
   @media ${device.tablet} {
     grid-template-columns: 1fr 1fr;
@@ -55,14 +53,12 @@ const CurrentWeatherWrapper = styled.div`
 `;
 
 const WeatherIcon = styled.div`
-  display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 70px;
+  font-size: 35px;
   color: #ffffff;
   @media ${device.tablet} {
     font-size: 100px;
-    justify-content: flex-end;
+  
   }
   @media ${device.laptop} {
     font-size: 120px;
@@ -72,15 +68,16 @@ const WeatherIcon = styled.div`
   }
 `;
 
-const TemperatureWrapper = styled.div``;
+const TemperatureWrapper = styled.div`
+`;
 
 const Temperature = styled.h3`
-  display: block;
-  font-size: 50px;
+  display: inline-block;
+  font-size: 35px;
   font-weight: 400;
   color: #ffffff;
   @media ${device.tablet} {
-    font-size: 70px;
+    font-size: 35px;
   }
   @media ${device.laptop} {
     font-size: 90px;
@@ -94,8 +91,6 @@ const WeatherDetailsWrapper = styled.div`
   flex-basis: 100%;
   display: flex;
   flex-wrap: wrap;
-  padding: 10px 0;
-  margin: 20px 0;
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   align-self: flex-start;
@@ -109,26 +104,6 @@ const WeatherDetail = styled.div`
   padding: 10px;
   @media ${device.laptop} {
     padding: 20px 10px;
-  }
-`;
-
-const ForecastWrapper = styled.div`
-  flex-basis: 100%;
-  margin: 20px 0;
-  overflow: hidden;
-`;
-
-const Forecast = styled.div`
-  position: relative;
-  display: flex;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  scrollbar-color: lightgray #ffffff;
-  scrollbar-width: thin;
-  margin-top: 20px;
-  padding-bottom: 20px;
-  @media ${device.laptop} {
-    order: 4;
   }
 `;
 
@@ -146,19 +121,8 @@ const Result = ({ weather }) => {
     wind,
     highestTemp,
     lowestTemp,
-    forecast,
+ 
   } = weather;
-
-  const forecasts = forecast.map(item => (
-    <ForecastHour
-      key={item.dt}
-      temp={Math.floor(item.main.temp * 1) / 1}
-      icon={item.weather[0].icon}
-      month={item.dt_txt.slice(5, 7)}
-      day={item.dt_txt.slice(8, 10)}
-      hour={item.dt_txt.slice(11, 13) * 1}
-    />
-  ));
 
   let weatherIcon = null;
 
@@ -195,12 +159,12 @@ const Result = ({ weather }) => {
           </SmallLabel>
         </TemperatureWrapper>
       </CurrentWeatherWrapper>
-      <WeatherDetailsWrapper>
+      <WeatherDetailsWrapper align="right">
         <WeatherDetail>
           <SmallLabel align="center" weight="400">
             {Math.floor(highestTemp)}&#176;
           </SmallLabel>
-          <Text align="center">Hight</Text>
+          <Text align="center">High</Text>
         </WeatherDetail>
         <WeatherDetail>
           <SmallLabel align="center" weight="400">
@@ -233,10 +197,6 @@ const Result = ({ weather }) => {
           <Text align="center">Sunset</Text>
         </WeatherDetail>
       </WeatherDetailsWrapper>
-      <ForecastWrapper>
-        <MediumLabel weight="400">Forecast</MediumLabel>
-        <Forecast>{forecasts}</Forecast>
-      </ForecastWrapper>
     </Results>
   );
 };
