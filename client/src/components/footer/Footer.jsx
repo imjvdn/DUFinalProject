@@ -1,7 +1,7 @@
 import React from 'react';
 import IconLink from '../buttons/IconLink';
 import Github from '../../res/footer-github.png';
-import YouTube from '../../res/footer-youtube.png';
+// import YouTube from '../../res/footer-youtube.png';
 import './style.css';
 
 const Footer = () => {

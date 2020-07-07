@@ -14,6 +14,9 @@ import Weather from '../src_weather/components/App';
 class Home extends Component {
   state = {
     name: '',
+    title: '',
+    displayname: '',
+    email: '',
     description: '',
     search: '',
     result: [],
@@ -23,25 +26,27 @@ class Home extends Component {
     this.loadPlans();
   }
   loadPlans = () => {
+    console.log("loaded plans");
     API.getPlans()
       .then((res) =>
-        this.setState({ plans: res.data, name: '', description: '' })
+        this.setState({ plans: res.data, title: "", description: "" })
       )
       .catch((err) => console.log(err));
   };
-  handleInputChange = (event) => {
+  handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
     });
   };
-  handleFormSubmit = (event) => {
+  handleFormSubmit = event => {
     event.preventDefault();
+    console.log('youve made it this far');
     API.savePlans({
-      name: this.state.name,
+      title: this.state.title,
       description: this.state.description,
     })
-      .then((res) => this.loadPlans())
+      .then(res => this.loadPlans())
       .catch((err) => console.log(err));
   };
   handleSearchSubmit = (event) => {
@@ -73,10 +78,10 @@ class Home extends Component {
             <div className="col">
               <form>
                 <Input
-                  value={this.state.name}
+                  value={this.state.title}
                   onChange={this.handleInputChange}
-                  name="name"
-                  placeholder="Plan Name"
+                  name="title"
+                  placeholder="Plan Name (Required)"
                 />
                 <TextArea
                   value={this.state.description}
@@ -85,10 +90,10 @@ class Home extends Component {
                   placeholder="Description"
                 />
                 <FormBtn
-                  disabled={!this.state.name}
-                  // value={this.state.search}
-                  handleInputChange={this.handleInputChange}
-                  // handleSearchSubmit={this.handleSearchSubmit}
+                  disabled={!this.state.title}
+                  // type="submit"
+                  // handleInputChange={this.handleInputChange}
+                  onClick={this.handleFormSubmit}
                 >
                   Save
                 </FormBtn>
@@ -111,16 +116,21 @@ class Home extends Component {
               </form>
             </div>
             <div className="col">
-              <CardSave>
-                {this.state.plans.map((plan) => (
-                  <CardList key={plan._id}>
-                    <Link to={'/plans/' + plan._id}>
-                      <strong>{plan.title}</strong>
-                      <h3>{plan.description}</h3>
-                    </Link>
-                  </CardList>
-                ))}
-              </CardSave>
+              {this.state.plans.length ? (
+                <CardSave>
+                  {this.state.plans.map((plan) => (
+                    <CardList key={plan._id} title={plan.title} description={plan.description}>
+                      {/* <Link to={'/plans/' + plan._id}> */}
+                        {/* <strong>{plan.title}</strong> */}
+                        {/* {plan.description} */}
+                      {/* </Link> */}
+                    </CardList>
+                  ))}
+                </CardSave>
+              ) : (
+                <h5>No Results to Display</h5>
+              )}
+
             </div>
           </div>
           <Col>
@@ -133,7 +143,7 @@ class Home extends Component {
                 ></ResultsCard>
               );
             })}
-            
+
           </Col>
 
           <Calendar />

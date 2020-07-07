@@ -5,6 +5,9 @@ const fs = require('fs');
 const http = require('http');
 const https = require('https');
 const mongoose = require('mongoose');
+const routes = require('../routes');
+const app = express();
+const db = require('../models');
 
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
@@ -16,8 +19,12 @@ const SpotifyStrategy = require('passport-spotify').Strategy;
 const TwitchStrategy = require('passport-twitch.js').Strategy;
 const keys = require('../config');
 const chalk = require('chalk');
-const Plan = require('../client/src/models/plan');
-
+const Plan = require('../models/plan');
+const User = require('../models/user');
+// const { title } = require('process');
+// const { route } = require('../routes');
+// const { Plan } = require('../models');
+app.use(routes);
 mongoose.connect(
   process.env.MONGODB_URI || 'mongodb://localhost/finalproject',
   { useNewUrlParser: true },
@@ -29,7 +36,7 @@ mongoose.connect(
     }
   }
 );
-
+// app.use(routes);
 let user = {};
 
 passport.serializeUser((user, cb) => {
@@ -58,6 +65,7 @@ passport.use(
 
 // Amazon Strategy
 passport.use(
+
   new AmazonStrategy(
     {
       clientID: keys.AMAZON.clientID,
@@ -65,14 +73,21 @@ passport.use(
       callbackURL: '/auth/amazon/callback',
     },
     (accessToken, refreshToken, profile, cb) => {
+      // app.use(routes);
+      // mongoose.connect("mongodb://localhost/finalproject", { useNewUrlParser: true });
       console.log(chalk.blue(JSON.stringify(profile)));
       user = { ...profile };
 
       console.log(profile.id);
 
-      console.log(Plan);
-
-      Plan.findOne({ username: profile.id }, (err, user) => {
+      // console.log(Plan);
+      // Homeplan.create((err, user) => {
+      //   const proplan = new Homeplan();
+      //   proplan.addListener((err) => {
+      //     return cb(null);
+      //   });
+      // });
+      User.findOne({ username: profile.id }, (err, user) => {
         console.log('Anything you want');
         if (err) {
           console.log('User.js post error: ', err);
@@ -80,16 +95,54 @@ passport.use(
           console.log('User already exists', user);
           return cb(null, profile);
         } else {
-          const newUser = new Plan({
+          // app.use(routes);
+          // mongoose.connect("mongodb://localhost/finalproject", { useNewUrlParser: true });
+          db.User.create({
             displayname: profile.displayName,
             email: profile.emails[0].value,
             username: profile.id,
-          });
-          console.log('New User', newUser);
-          newUser.save((err, savedUser) => {
-            if (err) return res.json(err);
-            return cb(null, profile);
-          });
+            // link: "testing"
+            // new: true
+          })
+            .then(function (profile) {
+              return cb(null, profile);
+            });
+          // app.post(function(req, res) {
+          db.Plan.create({
+            title: "testing title",
+            description: "testing 123"
+          })
+            .then(function (dbPlan) {
+              return db.User.findOneAndUpdate({}, { $push: { plan: dbPlan._id } }, { new: true });
+              // return dbPlan;
+            })
+            // .then(function (dbUser) {
+            //   return dbUser
+            // })
+            .catch(function (err) {
+              console.log(err);
+            })
+          // })
+          // db.Plan.create(profile)
+          // .then(function(dbPlan) {
+          //   return db.User.findOneAndUpdate({ _id: profile.id }, { plan: dbPlan._id }, { title: String }, { description: String }, { new: true });
+          // })
+          // .then(function(dbUser) {
+          //   res.json(dbUser);
+          // })
+          // const newUser = new User({
+          //   displayname: profile.displayName,
+          //   email: profile.emails[0].value,
+          //   username: profile.id,
+          //   // title: String,
+          //   // description: String
+          // });
+
+          // console.log('New User', newUser);
+          // newUser.save((err, savedUser) => {
+          //   if (err) return res.json(err);
+          //   return cb(null, profile);
+          // });
         }
       });
     }
@@ -194,6 +247,7 @@ passport.use(
             displayname: profile.displayName,
             email: profile.emails[0].value,
             username: profile.id,
+
           });
           console.log('New User', newUser);
           newUser.save((err, savedUser) => {
@@ -273,8 +327,10 @@ passport.use(
   )
 );
 
-const app = express();
+// const app = express();
+// app.use(routes);
 app.use(cors());
+// app.use(routes);
 app.use(passport.initialize());
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
@@ -299,6 +355,12 @@ app.get(
     res.redirect('/profile');
   }
 );
+app.post('/api/plans', function(req, res) {
+  db.Plan.create(req.body)
+  .then(function(dbPlan) {
+    return db.User.findOneAndUpdate({}, { $push: { plan: dbPlan._id} }, {new: true});
+  }).then(function(dbUser) {res.json(dbUser); })
+})
 
 app.get('/auth/github', passport.authenticate('github'));
 app.get(

@@ -12,8 +12,9 @@ export default {
     deletePlans: function(id) {
         return axios.delete("/api/plans" + id);
     },
-    savePlans: function(savePlan) {
-        return axios.post("/api/plans", savePlan);
+    savePlans: function(newUser) {
+        console.log("Saving plans");
+        return axios.post("/api/plans", newUser);
     },
     getApi: function() {
         return axios.get("/api/apimodel");
