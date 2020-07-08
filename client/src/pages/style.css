@@ -43,6 +43,10 @@
   font-size: 75px;
 }
 
+.searchInput {
+  width: 50%;
+  display: inline-flex;
+}
 .form-control {
   text-align: center;
   background-color: rgb(240, 222, 222);
@@ -53,15 +57,37 @@
 
 .form-btn {
   text-align: center;
+  display: inline-block;
   background-color: #da2929;
   color: black;
   font-family: 'Great Vibes', cursive;
   font-size: 25px;
-  float: center;
+}
+
+.apibutton {
+  text-align: center;
+  margin-left: 10px;
+  display: inline-block;
+  background-color: #da2929 !important;
+  color: black;
+  font-family: 'Great Vibes', cursive;
+  font-size: 25px;
 }
 
 .form-group {
   width: 100%;
+ 
+}
+.apis {
+  width: 75%;
+  margin-bottom: 10px ;
+
+  display: inline-block;
+    text-align: center;
+    background-color: rgb(240, 222, 222);
+    color: black;
+    font-family: 'Great Vibes', cursive;
+    font-size: 25px;
 }
 .create-btn {
   border: 2px solid black;
@@ -87,3 +113,5 @@ a:hover {
   color: magenta;
   text-decoration: magenta;
 }
+
+

@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import './style.css';
 import { Input, TextArea, FormBtn } from '../components/form/Form';
 // import { Link } from 'react-router-dom';
+import { Input, TextArea, FormBtn, FormBtnRest } from '../components/form/Form';
+import { Link } from 'react-router-dom';
 import CardSave from '../components/cards/CardSave';
 import CardList from '../components/cards/CardList';
 // import Calendar from '../components/calendar/Calendar';
@@ -10,6 +12,7 @@ import ResultsCard from '../components/searchResults/results';
 import API from '../utils/API';
 import { Col } from 'react-bootstrap';
 import Weather from '../src_weather/components/App';
+
 
 class Home extends Component {
   state = {
@@ -21,6 +24,7 @@ class Home extends Component {
     search: '',
     result: [],
     plans: [],
+    restaurant: ''
   };
   componenetDidMount() {
     this.loadPlans();
@@ -56,6 +60,14 @@ class Home extends Component {
       console.log(this.state.search)
     );
   };
+  handleSearchRestaurant = (event) => {
+    console.log("you are hitting here")
+    event.preventDefault();
+    this.searchRestaurant(
+      { restaurant: event.target.value },
+      console.log(this.state.restaurant)
+    );
+  };
   searchApi = (event) => {
     API.search(this.state.search)
       .then((res) => {
@@ -69,6 +81,21 @@ class Home extends Component {
         throw err;
       });
   };
+  searchRestaurant = (event) => {
+   
+    API.searchRestaurant(this.state.restaurant)
+      .then((res) => {
+        this.setState({
+          result: res.data,
+          search: '',
+        });
+        console.log(res.data);
+        // console.log(result)
+      })
+      .catch((err) => {
+        throw err;
+      });
+  };
   render() {
     return (
       <div>
@@ -76,7 +103,7 @@ class Home extends Component {
         <div className="container">
           <div className="row">
             <div className="col">
-              <form>
+              <form >
                 <Input
                   value={this.state.title}
                   onChange={this.handleinputchange}
@@ -98,21 +125,36 @@ class Home extends Component {
                   Save
                 </FormBtn>
               </form>
-              <form>
-                <Input
+              <form >
+                <input className="apis"
                   value={this.state.search}
                   onChange={this.handleinputchange}
                   name="search"
                   placeholder="Event"
                 />
-                <FormBtn
+                <button className="apibutton"
                   disabled={!this.state.search}
                   value={this.state.search}
                   // handleinputchange={this.handleinputchange}
                   onClick={this.handlesearchsubmit}
                 >
                   Search
-                </FormBtn>
+                </button>
+                <input className="apis"
+                  value={this.state.restaurant}
+                  onChange={this.handleInputChange}
+                  name="restaurant"
+                  placeholder="Restaurant"
+                />
+                <FormBtnRest className="apibutton"
+                  // disabled={!this.state.search}
+                  value={this.state.restaurant}
+                  handleInputChange={this.handleInputChange}
+                  handleSearchRestaurant={this.handleSearchRestaurant}
+                >
+                  Search
+                </FormBtnRest>
+                
               </form>
             </div>
             <div className="col">
@@ -134,7 +176,7 @@ class Home extends Component {
             </div>
           </div>
           <Col>
-            {/* <Calendar /> */}
+            
             {this.state.result.map((result) => {
               return (
                 <ResultsCard
@@ -149,6 +191,14 @@ class Home extends Component {
           {/* <Calendar /> */}
 
           <Weather />
+            })} 
+          </Col>
+        </div>
+        <div>
+        <Calendar />
+        </div>
+      <div className="weatherDiv">
+        <Weather />  
         </div>
       </div>
     );

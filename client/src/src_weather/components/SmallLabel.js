@@ -6,8 +6,8 @@ const SmallLabel = styled.h4`
   display: block;
   font-weight: ${({ weight }) => weight || '600'};
   font-size: ${({ fontSize }) => fontSize || '15px'};
-  text-align: ${({ align }) => align || 'left'};
-  padding: 5px 0;
+  text-align: ${({ align }) => align || 'center'};
+ 
   ${({ firstToUpperCase }) =>
     firstToUpperCase &&
     `

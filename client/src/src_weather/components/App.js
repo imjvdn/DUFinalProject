@@ -78,8 +78,8 @@ class App extends React.Component {
     const { value } = this.state;
     const APIkey = process.env.REACT_APP_API_KEY;
 
-    const weather = `https://api.openweathermap.org/data/2.5/weather?q=${value}&APPID=${APIkey}&units=metric`;
-    const forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${value}&APPID=${APIkey}&units=metric`;
+    const weather = `https://api.openweathermap.org/data/2.5/weather?q=${value}&APPID=${APIkey}&units=imperial`;
+    const forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${value}&APPID=${APIkey}&units=imperial`;
 
     Promise.all([fetch(weather), fetch(forecast)])
       .then(([res1, res2]) => {
@@ -125,7 +125,7 @@ class App extends React.Component {
           clouds: data1.clouds.all,
           humidity: data1.main.humidity,
           wind: data1.wind.speed,
-          forecast: data2.list,
+       
         };
         this.setState({
           weatherInfo,
