@@ -100,14 +100,14 @@ button {
   width: 50%;
 }
 
-.list-item-description {
-  font-weight: 200;
-}
-
 .weatherdiv {
   display: inline-block;
   width: 750px !important;
   position: relative;
+}
+
+.list-item-description {
+  font-weight: 200;
 }
 
 .calendar {
