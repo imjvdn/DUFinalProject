@@ -15,14 +15,14 @@ const CardSave = ({ children }) => {
                     <Nav.Item>
                         <Nav.Link href="#link">Done</Nav.Link>
                     </Nav.Item>
-                    
+
                 </Nav>
             </Card.Header>
             <Card.Body>
                 <Card.Title>{children}</Card.Title>
                 <Card.Text>
                     {children}
-    </Card.Text>
+                </Card.Text>
                 <Button className="checked" variant="primary" type="checkbox">✔</Button>
                 <Button className="delete" variant="primary">✗</Button>
             </Card.Body>

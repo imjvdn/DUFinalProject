@@ -5,6 +5,9 @@ const fs = require('fs');
 const http = require('http');
 const https = require('https');
 const mongoose = require('mongoose');
+const routes = require('../routes');
+const app = express();
+const db = require('../models');
 
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
@@ -16,19 +19,8 @@ const SpotifyStrategy = require('passport-spotify').Strategy;
 const TwitchStrategy = require('passport-twitch.js').Strategy;
 const keys = require('../config');
 const chalk = require('chalk');
-const Plan = require('../client/src/models/plan');
-
-mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/finalproject',
-  { useNewUrlParser: true },
-  function (err) {
-    if (err) {
-      console.err(err);
-    } else {
-      console.log('Connected');
-    }
-  }
-);
+const Plan = require('../models/plan');
+const User = require('../models/user');
 
 let user = {};
 
@@ -58,59 +50,89 @@ passport.use(
 
 // Amazon Strategy
 passport.use(
+
   new AmazonStrategy(
     {
       clientID: keys.AMAZON.clientID,
       clientSecret: keys.AMAZON.clientSecret,
       callbackURL: '/auth/amazon/callback',
     },
-    (accessToken, refreshToken, profile, cb) => {
+    (accessToken, refreshToken, profile, done) => {
+      // app.use(routes);
+      // mongoose.connect("mongodb://localhost/finalproject", { useNewUrlParser: true });
       console.log(chalk.blue(JSON.stringify(profile)));
       user = { ...profile };
 
       console.log(profile.id);
 
-      console.log(Plan);
-
-      Plan.findOne({ username: profile.id }, (err, user) => {
+      // console.log(Plan);
+      // Homeplan.create((err, user) => {
+      //   const proplan = new Homeplan();
+      //   proplan.addListener((err) => {
+      //     return cb(null);
+      //   });
+      // });
+      User.findOne({ username: profile.id }, (err, user) => {
         console.log('Anything you want');
         if (err) {
           console.log('User.js post error: ', err);
         } else if (user) {
           console.log('User already exists', user);
-          return cb(null, profile);
+          return done(null, profile);
         } else {
-          const newUser = new Plan({
+          // app.use(routes);
+          // mongoose.connect("mongodb://localhost/finalproject", { useNewUrlParser: true });
+          db.User.create({
             displayname: profile.displayName,
             email: profile.emails[0].value,
             username: profile.id,
-          });
-          console.log('New User', newUser);
-          newUser.save((err, savedUser) => {
-            if (err) return res.json(err);
-            return cb(null, profile);
-          });
+            // link: "testing"
+            // new: true
+          })
+            .then(function (profile) {
+              return done(null, profile);
+            });
+          // app.post(function(req, res) {
+          db.Plan.create({
+            title: "testing title",
+            description: "testing 123"
+          })
+            .then(function (dbPlan) {
+              return db.User.findOneAndUpdate({}, { $push: { plan: dbPlan._id } }, { new: true });
+              // return dbPlan;
+            })
+            // .then(function (dbUser) {
+            //   return dbUser
+            // })
+            .catch(function (err) {
+              console.log(err);
+            })
+          // })
+          // db.Plan.create(profile)
+          // .then(function(dbPlan) {
+          //   return db.User.findOneAndUpdate({ _id: profile.id }, { plan: dbPlan._id }, { title: String }, { description: String }, { new: true });
+          // })
+          // .then(function(dbUser) {
+          //   res.json(dbUser);
+          // })
+          // const newUser = new User({
+          //   displayname: profile.displayName,
+          //   email: profile.emails[0].value,
+          //   username: profile.id,
+          //   // title: String,
+          //   // description: String
+          // });
+
+          // console.log('New User', newUser);
+          // newUser.save((err, savedUser) => {
+          //   if (err) return res.json(err);
+          //   return cb(null, profile);
+          // });
         }
       });
     }
   )
 );
-
-// Github Strategy
-// passport.use(
-//   new GithubStrategy(
-//     {
-//       clientID: keys.GITHUB.clientID,
-//       clientSecret: keys.GITHUB.clientSecret,
-//       callbackURL: '/auth/github/callback',
-//     },
-//     (accessToken, refreshToken, profile, cb) => {
-//       console.log(chalk.blue(JSON.stringify(profile)));
-//       user = { ...profile };
-//       return cb(null, profile);
-//     }
-//   )
-// );
 
 passport.use(
   new GithubStrategy(
@@ -127,7 +149,7 @@ passport.use(
 
       console.log(Plan);
 
-      Plan.findOne({ username: profile.id }, (err, user) => {
+      User.findOne({ username: profile.id }, (err, user) => {
         console.log('Anything you want');
         if (err) {
           console.log('User.js post error: ', err);
@@ -135,37 +157,46 @@ passport.use(
           console.log('User already exists', user);
           return cb(null, profile);
         } else {
-          const newUser = new Plan({
+          db.User.create({
             displayname: profile.displayName,
-            email: profile.emails[0].value,
+            email: profile.email,
             username: profile.id,
-          });
-          console.log('New User', newUser);
-          newUser.save((err, savedUser) => {
-            if (err) return res.json(err);
-            return cb(null, profile);
-          });
+            // link: "testing"
+            // new: true
+          })
+            .then(function (profile) {
+              return cb(null, profile);
+            });
+          // app.post(function(req, res) {
+          db.Plan.create({
+            title: "testing title",
+            description: "testing 123"
+          })
+            .then(function (dbPlan) {
+              return db.User.findOneAndUpdate({}, { $push: { plan: dbPlan._id } }, { new: true });
+              // return dbPlan;
+            })
+            // .then(function (dbUser) {
+            //   return dbUser
+            // })
+            .catch(function (err) {
+              console.log(err);
+            })
+          // const newUser = new Plan({
+          //   displayname: profile.displayName,
+          //   email: profile.emails[0].value,
+          //   username: profile.id,
+          // });
+          // console.log('New User', newUser);
+          // newUser.save((err, savedUser) => {
+          //   if (err) return res.json(err);
+          //   return cb(null, profile);
+          // });
         }
       });
     }
   )
 );
-
-// Google Strategy
-// passport.use(
-//   new GoogleStrategy(
-//     {
-//       clientID: keys.GOOGLE.clientID,
-//       clientSecret: keys.GOOGLE.clientSecret,
-//       callbackURL: '/auth/google/callback',
-//     },
-//     (accessToken, refreshToken, profile, cb) => {
-//       console.log(chalk.blue(JSON.stringify(profile)));
-//       user = { ...profile };
-//       return cb(null, profile);
-//     }
-//   )
-// );
 
 passport.use(
   new GoogleStrategy(
@@ -194,6 +225,7 @@ passport.use(
             displayname: profile.displayName,
             email: profile.emails[0].value,
             username: profile.id,
+
           });
           console.log('New User', newUser);
           newUser.save((err, savedUser) => {
@@ -273,8 +305,13 @@ passport.use(
   )
 );
 
-const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+// app.use(routes);
 app.use(cors());
+// app.use(routes);
 app.use(passport.initialize());
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
@@ -299,6 +336,12 @@ app.get(
     res.redirect('/profile');
   }
 );
+// app.post('/api/plans', function (req, res) {
+//   db.Plan.create(req.body)
+//     .then(function (dbPlan) {
+//       return db.User.findOneAndUpdate({}, { $push: { plan: dbPlan._id } }, { new: true });
+//     }).then(function (dbUser) { res.json(dbUser); })
+// })
 
 app.get('/auth/github', passport.authenticate('github'));
 app.get(
@@ -363,45 +406,68 @@ app.get('/auth/logout', (req, res) => {
 console.log('b');
 console.log(`${process.env.NODE_ENV},Hello, 237`);
 
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, '../client/build')));
+  
+// }
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
-  app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  });
-}
-
-if (process.env.NODE_ENV === 'production') {
-  const privateKey = fs.readFileSync(
-    '/etc/letsencrypt/live/learnpassportjs.com/privkey.pem',
-    'utf8'
-  );
-  const certificate = fs.readFileSync(
-    '/etc/letsencrypt/live/learnpassportjs.com/cert.pem',
-    'utf8'
-  );
-  const ca = fs.readFileSync(
-    '/etc/letsencrypt/live/learnpassportjs.com/chain.pem',
-    'utf8'
-  );
-  const credentials = {
-    key: privateKey,
-    cert: certificate,
-    ca: ca,
+  // const privateKey = fs.readFileSync(
+  //   '/etc/letsencrypt/live/learnpassportjs.com/privkey.pem',
+  //   'utf8'
+  // );
+  // const certificate = fs.readFileSync(
+  //   '/etc/letsencrypt/live/learnpassportjs.com/cert.pem',
+  //   'utf8'
+  // );
+  // const ca = fs.readFileSync(
+  //   '/etc/letsencrypt/live/learnpassportjs.com/chain.pem',
+  //   'utf8'
+  // );
+  // const credentials = {
+  //   key: privateKey,
+  //   cert: certificate,
+  //   ca: ca,
+  // };
+  app.use(express.static("client/build"));
+  // https.createServer(credentials, app).listen(443, () => {
+  //   console.log('HTTPS Server running on port 443');
+  // });
+  // http
+  //   .createServer(function (req, res) {
+  //     res.writeHead(301, {
+  //       Location: 'https://' + req.headers['host'] + req.url,
+  //     });
+  //     res.end();
+  //   })
+  //   .listen(80);
+  // console.log('Express listening on port 80');
+} 
+  // else {
+  
+  let mongoConnectionOptions = {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true
   };
-
-  https.createServer(credentials, app).listen(443, () => {
-    console.log('HTTPS Server running on port 443');
+  mongoose.connect(
+    process.env.MONGODB_URI || "mongodb://localhost/finalproject",
+    mongoConnectionOptions
+  ).then(console.log(`MONGODB is connected`)).catch((err) => { console.log(`MONGODB connection error`, err) });
+  
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(routes);
+  // app.get('/', function (req, res) {
+  //   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  // });
+  // Use apiRoutes
+  app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
   });
-  http
-    .createServer(function (req, res) {
-      res.writeHead(301, {
-        Location: 'https://' + req.headers['host'] + req.url,
-      });
-      res.end();
-    })
-    .listen(80);
-  console.log('Express listening on port 80');
-} else {
-  app.listen(5000);
-  console.log('Express listening on port 5000');
-}
+  let PORT = 3001;
+  app.listen(PORT, function () {
+    console.log(`listening to port ${PORT}`);
+  });
+// }

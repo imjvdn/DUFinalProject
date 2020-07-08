@@ -7,12 +7,14 @@ mongoose.connect(
   );
   const planSeed = [
       {
-        name: "Brewery",
-        description: "Brewery with Date tonight"
+        title: "Brewery",
+        description: "Brewery with Date tonight",
+        date: new Date(Date.now())
       },
       {
-          name: "TestMany",
-          description: "Testing Seed db and InsertMAny"
+          title: "TestMany",
+          description: "Testing Seed db and InsertMAny",
+          date: new Date(Date.now())
       }
   ];
   db.Plan
