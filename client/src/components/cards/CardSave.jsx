@@ -21,7 +21,7 @@ const CardSave = ({ children }) => {
             <Card.Body>
                 <Card.Title>{children}</Card.Title>
                 <Card.Text>
-                    {children}
+                    {/* {children} */}
                 </Card.Text>
                 <Button className="checked" variant="primary" type="checkbox">✔</Button>
                 <Button className="delete" variant="primary">✗</Button>
