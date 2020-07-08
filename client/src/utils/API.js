@@ -10,17 +10,18 @@ export default {
         return axios.get("/api/plans");
     },
     deletePlans: function(id) {
-        return axios.delete("/api/plans" + id);
+        return axios.delete("/api/plans/" + id);
     },
-    savePlans: function(newUser) {
+    savePlans: function(newPlan) {
         console.log("Saving plans");
-        return axios.post("/api/plans", newUser);
+        console.log(newPlan);
+        return axios.post("/api/plans", newPlan);
     },
     getApi: function() {
         return axios.get("/api/apimodel");
     },
     deleteApi: function(id) {
-        return axios.delete("/api/apimodel" + id);
+        return axios.delete("/api/apimodel/" + id);
     },
     saveApi: function(savePlan) {
         return axios.post("/api/apimodel", savePlan);

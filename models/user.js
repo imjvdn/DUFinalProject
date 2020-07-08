@@ -24,7 +24,9 @@ var userSchema = new Schema({
 });
 
 // This creates our model from the above schema, using mongoose's model method
-var User = mongoose.model("User", userSchema);
+// var User = mongoose.model("User", userSchema);
+const UserSchema = new mongoose.Schema(userSchema, {strict: false});
 
+module.exports = User = mongoose.model("users", UserSchema);
 // Export the Article model
-module.exports = User;
+// module.exports = User;

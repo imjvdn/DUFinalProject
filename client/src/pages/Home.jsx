@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 // import Terminal from '../components/displays/Terminal';
 import './style.css';
 import { Input, TextArea, FormBtn } from '../components/form/Form';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import CardSave from '../components/cards/CardSave';
 import CardList from '../components/cards/CardList';
-import Calendar from '../components/calendar/Calendar';
+// import Calendar from '../components/calendar/Calendar';
 import ResultsCard from '../components/searchResults/results';
 import API from '../utils/API';
 import { Col } from 'react-bootstrap';
@@ -33,7 +33,7 @@ class Home extends Component {
       )
       .catch((err) => console.log(err));
   };
-  handleInputChange = event => {
+  handleinputchange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
@@ -44,12 +44,12 @@ class Home extends Component {
     console.log('youve made it this far');
     API.savePlans({
       title: this.state.title,
-      description: this.state.description,
+      description: this.state.description
     })
       .then(res => this.loadPlans())
       .catch((err) => console.log(err));
   };
-  handleSearchSubmit = (event) => {
+  handlesearchsubmit = (event) => {
     event.preventDefault();
     this.searchApi(
       { search: event.target.value },
@@ -79,13 +79,13 @@ class Home extends Component {
               <form>
                 <Input
                   value={this.state.title}
-                  onChange={this.handleInputChange}
+                  onChange={this.handleinputchange}
                   name="title"
                   placeholder="Plan Name (Required)"
                 />
                 <TextArea
                   value={this.state.description}
-                  onChange={this.handleInputChange}
+                  onChange={this.handleinputchange}
                   name="description"
                   placeholder="Description"
                 />
@@ -101,15 +101,15 @@ class Home extends Component {
               <form>
                 <Input
                   value={this.state.search}
-                  onChange={this.handleInputChange}
+                  onChange={this.handleinputchange}
                   name="search"
                   placeholder="Event"
                 />
                 <FormBtn
                   disabled={!this.state.search}
                   value={this.state.search}
-                  handleInputChange={this.handleInputChange}
-                  handleSearchSubmit={this.handleSearchSubmit}
+                  // handleinputchange={this.handleinputchange}
+                  onClick={this.handlesearchsubmit}
                 >
                   Search
                 </FormBtn>
@@ -146,7 +146,7 @@ class Home extends Component {
 
           </Col>
 
-          <Calendar />
+          {/* <Calendar /> */}
 
           <Weather />
         </div>

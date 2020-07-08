@@ -17,9 +17,9 @@ mongoose.connect(
           date: new Date(Date.now())
       }
   ];
-  db.Homeplan
+  db.Plan
   .remove({})
-  .then(() => db.Homeplan.collection.insertMany(planSeed))
+  .then(() => db.Plan.collection.insertMany(planSeed))
   .then(data => {
       console.log(data.result.n + " Recoreds Inserted!");
       process.exit(0);
