@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 // import Terminal from '../components/displays/Terminal';
 import './style.css';
-import { Input, TextArea, FormBtn } from '../components/form/Form';
 // import { Link } from 'react-router-dom';
 import { Input, TextArea, FormBtn, FormBtnRest } from '../components/form/Form';
 import { Link } from 'react-router-dom';
 import CardSave from '../components/cards/CardSave';
 import CardList from '../components/cards/CardList';
-// import Calendar from '../components/calendar/Calendar';
+import Calendar from '../components/calendar/Calendar';
 import ResultsCard from '../components/searchResults/results';
 import API from '../utils/API';
 import { Col } from 'react-bootstrap';
@@ -190,9 +189,7 @@ class Home extends Component {
 
           {/* <Calendar /> */}
 
-          <Weather />
-            })} 
-          </Col>
+          {/* <Weather /> */}
         </div>
         <div>
         <Calendar />
