@@ -8,7 +8,12 @@ const CardList = (props) => {
     //         <Card {...app} key={app.name} />
     //     );
     // });
-    return <li className="list-group-item">{props.title}{props.description}</li>
+    return (
+        <div>
+            <li className="list-group-item">{props.title} <br/>
+            <p className="list-group-description">{props.description}</p></li>
+        </div>
+    )
 };
 
 export default CardList;
