@@ -33,8 +33,8 @@ export default {
    
     searchRestaurant: function(query) {
         // return axios.get(BASEURL + query + "?apikey=" + APIKEY);
-        console.log(APIKEYTO);
-        return axios.get("https://developers.zomato.com/api/v2.1/search?cuisines=" + query + "&apikey=" + APIKEYTO)
+        console.log(query);
+        return axios.get("https://developers.zomato.com/api/v2.1/search?name=" + query + "&apikey=" + APIKEYTO)
     }
 
  

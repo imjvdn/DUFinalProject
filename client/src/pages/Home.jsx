@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 import './style.css';
 // import { Link } from 'react-router-dom';
 import { Input, TextArea, FormBtn, FormBtnRest } from '../components/form/Form';
-import { Link } from 'react-router-dom';
-import CardSave from '../components/cards/CardSave';
+// import { Link } from 'react-router-dom';
+// import CardSave from '../components/cards/CardSave';
 import { CardItem, List } from '../components/cards/CardList';
 import DeleteBtn from '../components/buttons/DeleteBtn';
 import Calendar from '../components/calendar/Calendar';
 import ResultsCard from '../components/searchResults/results';
+import Restaurant from '../components/searchResults/Restaurant';
 import API from '../utils/API';
 import { Col } from 'react-bootstrap';
 import Weather from '../src_weather/components/App';
@@ -24,7 +25,8 @@ class Home extends Component {
     search: '',
     result: [],
     plans: [],
-    restaurant: ''
+    restaurant: '',
+    restaurants: []
   };
 
   componenetDidMount() {
@@ -99,9 +101,16 @@ class Home extends Component {
    
     API.searchRestaurant(this.state.restaurant)
       .then((res) => {
+        // let array = res.data.restaurants[0].restaurant;
+        let array = [];
+        for (let i = 0; i < 5; i++) {
+          array.push(res.data.restaurants[i]);
+          console.log(res.data.restaurants[i]);
+        }
+        console.log(array);
         this.setState({
-          result: res.data,
-          search: '',
+          restaurants: array,
+          restaurant: '',
         });
         console.log(res.data);
         // console.log(result)
@@ -157,14 +166,14 @@ class Home extends Component {
                 </button>
                 <input className="apis"
                   value={this.state.restaurant}
-                  onChange={this.handleInputChange}
+                  onChange={this.handleinputchange}
                   name="restaurant"
                   placeholder="Restaurant"
                 />
                 <FormBtnRest className="apibutton"
                   // disabled={!this.state.search}
                   value={this.state.restaurant}
-                  handleInputChange={this.handleInputChange}
+                  // handleInputChange={this.handleinputchange}
                   handleSearchRestaurant={this.handleSearchRestaurant}
                 >
                   Search
@@ -201,6 +210,19 @@ class Home extends Component {
                   name={result.name}
                   type={result.type}
                 ></ResultsCard>
+              );
+            })}
+
+          </Col>
+          <Col>
+            
+            {this.state.restaurants.map((result) => {
+              console.log(result);
+              return (
+                <Restaurant
+                  name={result.restaurant.name}
+                  type={result.restaurant.cuisines}
+                ></Restaurant>
               );
             })}
 
