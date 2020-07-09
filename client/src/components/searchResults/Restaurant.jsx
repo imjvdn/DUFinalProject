@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col } from 'react-bootstrap';
 import { SaveBtn } from "./ResBtn";
-function ResultsCard({ name, type, savedEvent, deleteEvent, link, id }) {
+function Restaurant(props) {
   return (
     <div className="result-div">
       <li className="search-list list-group-item">
@@ -9,25 +9,26 @@ function ResultsCard({ name, type, savedEvent, deleteEvent, link, id }) {
           <Col>
             <Row>
               <h3>
-                Name: {name}
+                Name: {props.name}
+                {/* Cuisine: {props.type} */}
               </h3>
             </Row>
             <Row>
               <h3>
-                Type: {type}
+                Cuisine: {props.type}
               </h3>
-              <button className="getTickets"><a href="https://www.ticketmaster.com/">Purchase Tickets</a></button>
+              {/* <button className="getTickets"><a href="https://www.ticketmaster.com/">Purchase Tickets</a></button> */}
             </Row>
           </Col>
-          <SaveBtn
+          {/* <SaveBtn
           id={id}
           onClick={savedEvent}
           >Save
-          </SaveBtn>
+          </SaveBtn> */}
         </Row>
       </li>
     </div>
   )
 }
 
-export default ResultsCard;
+export default Restaurant;
