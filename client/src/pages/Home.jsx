@@ -173,6 +173,7 @@ class Home extends Component {
               )}
 
             </div>
+            
           </div>
           <Col>
             
@@ -187,9 +188,6 @@ class Home extends Component {
 
           </Col>
 
-          {/* <Calendar /> */}
-
-          {/* <Weather /> */}
         </div>
         <div>
         <Calendar />

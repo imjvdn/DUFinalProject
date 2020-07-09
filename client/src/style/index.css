@@ -94,10 +94,12 @@ button {
 }
 
 .result-div {
-  position: relative;
+  /* position: relative; */
   left: 600px;
   bottom: 115px;
   width: 50%;
+  margin-bottom: 15px;
+  /* margin-top: -25%; */
 }
 
 .weatherdiv {
@@ -111,8 +113,9 @@ button {
 }
 
 .calendar {
-  position: absolute;
+  position: static;
   top: 700px;
+  margin-left: 15%;
 }
 
 .page {

@@ -1,11 +1,10 @@
 .main-card {
     float: right;
-    padding-bottom: 25%;
     background-color: rgb(240, 222, 222);
     color: black;
     font-family: 'Great Vibes', cursive;
     width: 500px;
-    height: 300px;
+    margin-bottom: -90%;
 }
 .prof-card {
     font-size: 20px;
