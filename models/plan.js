@@ -6,9 +6,9 @@ const planSchema = new Schema(
     // displayname: String,
     // email: String,
     // username: String,
-    title: { type: String, default: "HEllo" },
+    title: String,
     restaurant: String,
-    description: { type: String, default: "World" },
+    description: String,
     image: String,
     link: String,
     date: { type: Date, default: Date.now }

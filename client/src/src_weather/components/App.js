@@ -146,7 +146,7 @@ class App extends React.Component {
     const { value, weatherInfo, error } = this.state;
     return (
       <>
-        <AppTitle showLabel={(weatherInfo || error) && true}>Nite-tinerary</AppTitle>
+        {/* <AppTitle showLabel={(weatherInfo || error) && true}>Nite-tinerary</AppTitle> */}
         <WeatherWrapper>
           <AppTitle secondary showResult={(weatherInfo || error) && true}></AppTitle>
           <SearchCity

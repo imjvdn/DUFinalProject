@@ -28,12 +28,12 @@ const Profile = () => {
           <ProfileCard />
           <ProfileCard />
           <ProfileCard />
-          <Calendar />
+          
           <a className="create-btn" href="/">Plan a Night</a>
           <a className="trend-btn" href="/">Trending Events</a>
       </Row>
-      {/* <Row>
-        
+      {/* <Row className="cal-row">
+        <Calendar />
       </Row> */}
       <div style={{ marginBottom: 20 }} />
     </div>

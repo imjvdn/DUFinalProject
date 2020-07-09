@@ -92,22 +92,19 @@ passport.use(
             .then(function (profile) {
               return done(null, profile);
             });
-          // app.post(function(req, res) {
-          db.Plan.create({
-            title: "testing title",
-            description: "testing 123"
-          })
+          app.post(function(req, res) {
+          db.Plan.create(req.body)
             .then(function (dbPlan) {
               return db.User.findOneAndUpdate({}, { $push: { plan: dbPlan._id } }, { new: true });
               // return dbPlan;
             })
-            // .then(function (dbUser) {
-            //   return dbUser
-            // })
+            .then(function (dbUser) {
+              return dbUser
+            })
             .catch(function (err) {
               console.log(err);
             })
-          // })
+          })
           // db.Plan.create(profile)
           // .then(function(dbPlan) {
           //   return db.User.findOneAndUpdate({ _id: profile.id }, { plan: dbPlan._id }, { title: String }, { description: String }, { new: true });
