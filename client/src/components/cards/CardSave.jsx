@@ -1,7 +1,10 @@
 import React from "react";
-import { Button, Nav, Card } from 'react-bootstrap';
+import { Nav, Row, Col, Card } from 'react-bootstrap';
+// import CardList from './CardList';
+import DeleteBtn from "../buttons/DeleteBtn";
 import "./style.css";
-const CardSave = ({ children }) => {
+// import { DeleteBtn } from "../searchResults/ResBtn";
+const CardSave = ({ children, id, deleteItem, title, description }) => {
     // const NAME = name.charAt(0).toUpperCase() + name.substring(1, name.length);
 
     return (
@@ -19,12 +22,21 @@ const CardSave = ({ children }) => {
                 </Nav>
             </Card.Header>
             <Card.Body>
-                <Card.Title>{children}</Card.Title>
-                <Card.Text>
-                    {/* {children} */}
-                </Card.Text>
-                <Button className="checked" variant="primary" type="checkbox">✔</Button>
-                <Button className="delete" variant="primary">✗</Button>
+                <li className="search-list list-group-item">
+                    <Row id={title} key={id}>
+                        <Col size="5">
+                            <Row>
+                                <h3 className="plan-title">{title}</h3>
+                                <DeleteBtn className="delete-btn" id={id} onClick={deleteItem}/>
+                            </Row>
+                        </Col>
+                        
+
+                    </Row>
+                </li>
+                {/* <Card.Title>{title}</Card.Title>
+                <Card.Text>{description}</Card.Text> */}
+                {/* <Button className="checked" variant="primary" type="checkbox">✔</Button> */}
             </Card.Body>
         </Card>
     );

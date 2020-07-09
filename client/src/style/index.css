@@ -150,6 +150,11 @@ button {
   padding-top: 3px;
   line-height: 0;
 }
+
+.delete-btn {
+  float: right;
+  color: #e74944;
+}
 /* .result-div {
   
   margin-left: 55%;

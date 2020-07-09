@@ -5,7 +5,8 @@ import './style.css';
 import { Input, TextArea, FormBtn, FormBtnRest } from '../components/form/Form';
 import { Link } from 'react-router-dom';
 import CardSave from '../components/cards/CardSave';
-import CardList from '../components/cards/CardList';
+import { CardItem, List } from '../components/cards/CardList';
+import DeleteBtn from '../components/buttons/DeleteBtn';
 import Calendar from '../components/calendar/Calendar';
 import ResultsCard from '../components/searchResults/results';
 import API from '../utils/API';
@@ -25,9 +26,11 @@ class Home extends Component {
     plans: [],
     restaurant: ''
   };
+
   componenetDidMount() {
     this.loadPlans();
   }
+
   loadPlans = () => {
     console.log("loaded plans");
     API.getPlans()
@@ -36,12 +39,20 @@ class Home extends Component {
       )
       .catch((err) => console.log(err));
   };
+
+  deletePlans = id => {
+    API.deletePlans(id)
+      .then(res => this.loadPlans())
+      .catch(err => console.log(err));
+  };
+
   handleinputchange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
     });
   };
+
   handleFormSubmit = event => {
     event.preventDefault();
     console.log('youve made it this far');
@@ -52,6 +63,7 @@ class Home extends Component {
       .then(res => this.loadPlans())
       .catch((err) => console.log(err));
   };
+
   handlesearchsubmit = (event) => {
     event.preventDefault();
     this.searchApi(
@@ -59,6 +71,7 @@ class Home extends Component {
       console.log(this.state.search)
     );
   };
+  
   handleSearchRestaurant = (event) => {
     console.log("you are hitting here")
     event.preventDefault();
@@ -67,6 +80,7 @@ class Home extends Component {
       console.log(this.state.restaurant)
     );
   };
+
   searchApi = (event) => {
     API.search(this.state.search)
       .then((res) => {
@@ -80,6 +94,7 @@ class Home extends Component {
         throw err;
       });
   };
+
   searchRestaurant = (event) => {
    
     API.searchRestaurant(this.state.restaurant)
@@ -95,6 +110,7 @@ class Home extends Component {
         throw err;
       });
   };
+
   render() {
     return (
       <div>
@@ -156,18 +172,20 @@ class Home extends Component {
                 
               </form>
             </div>
+                    
             <div className="col">
               {this.state.plans.length ? (
-                <CardSave>
+                <List>
                   {this.state.plans.map((plan) => (
-                    <CardList key={plan._id} title={plan.title} description={plan.description}>
-                      {/* <Link to={'/plans/' + plan._id}> */}
-                        {/* <strong>{plan.title}</strong> */}
-                        {/* {plan.description} */}
-                      {/* </Link> */}
-                    </CardList>
+                    <CardItem key={plan._id} title={plan.title} description={plan.description}>
+                      <strong>
+                        {plan.title}
+                      </strong>
+                      <h3>{plan.description}</h3>
+                  <DeleteBtn onClick={() => this.deletePlans(plan._id)} />
+                    </CardItem>
                   ))}
-                </CardSave>
+                </List>
               ) : (
                 <h5>No Results to Display</h5>
               )}
@@ -199,4 +217,5 @@ class Home extends Component {
     );
   }
 }
+
 export default Home;
