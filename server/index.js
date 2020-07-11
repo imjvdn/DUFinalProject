@@ -50,7 +50,6 @@ passport.use(
 
 // Amazon Strategy
 passport.use(
-
   new AmazonStrategy(
     {
       clientID: keys.AMAZON.clientID,
@@ -58,20 +57,11 @@ passport.use(
       callbackURL: '/auth/amazon/callback',
     },
     (accessToken, refreshToken, profile, done) => {
-      // app.use(routes);
-      // mongoose.connect("mongodb://localhost/finalproject", { useNewUrlParser: true });
       console.log(chalk.blue(JSON.stringify(profile)));
       user = { ...profile };
 
       console.log(profile.id);
 
-      // console.log(Plan);
-      // Homeplan.create((err, user) => {
-      //   const proplan = new Homeplan();
-      //   proplan.addListener((err) => {
-      //     return cb(null);
-      //   });
-      // });
       User.findOne({ username: profile.id }, (err, user) => {
         console.log('Anything you want');
         if (err) {
@@ -80,51 +70,29 @@ passport.use(
           console.log('User already exists', user);
           return done(null, profile);
         } else {
-          // app.use(routes);
-          // mongoose.connect("mongodb://localhost/finalproject", { useNewUrlParser: true });
           db.User.create({
             displayname: profile.displayName,
             email: profile.emails[0].value,
             username: profile.id,
-            // link: "testing"
-            // new: true
-          })
-            .then(function (profile) {
-              return done(null, profile);
-            });
-          app.post(function(req, res) {
-          db.Plan.create(req.body)
-            .then(function (dbPlan) {
-              return db.User.findOneAndUpdate({}, { $push: { plan: dbPlan._id } }, { new: true });
-              // return dbPlan;
-            })
-            .then(function (dbUser) {
-              return dbUser
-            })
-            .catch(function (err) {
-              console.log(err);
-            })
-          })
-          // db.Plan.create(profile)
-          // .then(function(dbPlan) {
-          //   return db.User.findOneAndUpdate({ _id: profile.id }, { plan: dbPlan._id }, { title: String }, { description: String }, { new: true });
-          // })
-          // .then(function(dbUser) {
-          //   res.json(dbUser);
-          // })
-          // const newUser = new User({
-          //   displayname: profile.displayName,
-          //   email: profile.emails[0].value,
-          //   username: profile.id,
-          //   // title: String,
-          //   // description: String
-          // });
-
-          // console.log('New User', newUser);
-          // newUser.save((err, savedUser) => {
-          //   if (err) return res.json(err);
-          //   return cb(null, profile);
-          // });
+          }).then(function (profile) {
+            return done(null, profile);
+          });
+          app.post(function (req, res) {
+            db.Plan.create(req.body)
+              .then(function (dbPlan) {
+                return db.User.findOneAndUpdate(
+                  {},
+                  { $push: { plan: dbPlan._id } },
+                  { new: true }
+                );
+              })
+              .then(function (dbUser) {
+                return dbUser;
+              })
+              .catch(function (err) {
+                console.log(err);
+              });
+          });
         }
       });
     }
@@ -158,37 +126,25 @@ passport.use(
             displayname: profile.displayName,
             email: profile.email,
             username: profile.id,
-            // link: "testing"
-            // new: true
-          })
-            .then(function (profile) {
-              return cb(null, profile);
-            });
-          // app.post(function(req, res) {
+          }).then(function (profile) {
+            return cb(null, profile);
+          });
+
           db.Plan.create({
-            title: "testing title",
-            description: "testing 123"
+            title: 'testing title',
+            description: 'testing 123',
           })
             .then(function (dbPlan) {
-              return db.User.findOneAndUpdate({}, { $push: { plan: dbPlan._id } }, { new: true });
-              // return dbPlan;
+              return db.User.findOneAndUpdate(
+                {},
+                { $push: { plan: dbPlan._id } },
+                { new: true }
+              );
             })
-            // .then(function (dbUser) {
-            //   return dbUser
-            // })
+
             .catch(function (err) {
               console.log(err);
-            })
-          // const newUser = new Plan({
-          //   displayname: profile.displayName,
-          //   email: profile.emails[0].value,
-          //   username: profile.id,
-          // });
-          // console.log('New User', newUser);
-          // newUser.save((err, savedUser) => {
-          //   if (err) return res.json(err);
-          //   return cb(null, profile);
-          // });
+            });
         }
       });
     }
@@ -210,7 +166,7 @@ passport.use(
 
       console.log(Plan);
 
-      Plan.findOne({ username: profile.id }, (err, user) => {
+      User.findOne({ username: profile.id }, (err, user) => {
         console.log('Anything you want');
         if (err) {
           console.log('User.js post error: ', err);
@@ -218,17 +174,29 @@ passport.use(
           console.log('User already exists', user);
           return cb(null, profile);
         } else {
-          const newUser = new Plan({
+          db.User.create({
             displayname: profile.displayName,
-            email: profile.emails[0].value,
+            email: profile.email,
             username: profile.id,
-
-          });
-          console.log('New User', newUser);
-          newUser.save((err, savedUser) => {
-            if (err) return res.json(err);
+          }).then(function (profile) {
             return cb(null, profile);
           });
+
+          db.Plan.create({
+            title: 'testing title',
+            description: 'testing 123',
+          })
+            .then(function (dbPlan) {
+              return db.User.findOneAndUpdate(
+                {},
+                { $push: { plan: dbPlan._id } },
+                { new: true }
+              );
+            })
+
+            .catch(function (err) {
+              console.log(err);
+            });
         }
       });
     }
@@ -262,7 +230,44 @@ passport.use(
     (accessToken, refreshToken, profile, cb) => {
       console.log(chalk.blue(JSON.stringify(profile)));
       user = { ...profile };
-      return cb(null, profile);
+
+      console.log(profile.id);
+
+      console.log(Plan);
+
+      User.findOne({ username: profile.id }, (err, user) => {
+        console.log('Anything you want');
+        if (err) {
+          console.log('User.js post error: ', err);
+        } else if (user) {
+          console.log('User already exists', user);
+          return cb(null, profile);
+        } else {
+          db.User.create({
+            displayname: profile.displayName,
+            email: profile.email,
+            username: profile.id,
+          }).then(function (profile) {
+            return cb(null, profile);
+          });
+
+          db.Plan.create({
+            title: 'Successful Login ',
+            description: 'Logged in with Spotify',
+          })
+            .then(function (dbPlan) {
+              return db.User.findOneAndUpdate(
+                {},
+                { $push: { plan: dbPlan._id } },
+                { new: true }
+              );
+            })
+
+            .catch(function (err) {
+              console.log(err);
+            });
+        }
+      });
     }
   )
 );
@@ -279,23 +284,41 @@ passport.use(
       console.log(chalk.blue(JSON.stringify(profile)));
       user = { ...profile };
 
-      const { username, email } = req.body;
-      // ADD VALIDATION
-      User.findOne({ username: username }, (err, user) => {
+      console.log(profile.id);
+
+      console.log(Plan);
+
+      User.findOne({ username: profile.id }, (err, user) => {
+        console.log('Anything you want');
         if (err) {
           console.log('User.js post error: ', err);
         } else if (user) {
+          console.log('User already exists', user);
           return cb(null, profile);
         } else {
-          const newUser = new User({
+          db.User.create({
             displayname: profile.displayName,
-            email: profile.emails[0].value,
-            username: profile.username,
-          });
-          newUser.save((err, savedUser) => {
-            if (err) return res.json(err);
+            email: profile.email,
+            username: profile.id,
+          }).then(function (profile) {
             return cb(null, profile);
           });
+
+          db.Plan.create({
+            title: 'Successful Login',
+            description: 'Logged in with Twitch',
+          })
+            .then(function (dbPlan) {
+              return db.User.findOneAndUpdate(
+                {},
+                { $push: { plan: dbPlan._id } },
+                { new: true }
+              );
+            })
+
+            .catch(function (err) {
+              console.log(err);
+            });
         }
       });
     }
@@ -333,12 +356,6 @@ app.get(
     res.redirect('/profile');
   }
 );
-// app.post('/api/plans', function (req, res) {
-//   db.Plan.create(req.body)
-//     .then(function (dbPlan) {
-//       return db.User.findOneAndUpdate({}, { $push: { plan: dbPlan._id } }, { new: true });
-//     }).then(function (dbUser) { res.json(dbUser); })
-// })
 
 app.get('/auth/github', passport.authenticate('github'));
 app.get(
@@ -394,77 +411,48 @@ app.get('/user', (req, res) => {
   console.log('getting user data!');
   res.send(user);
 });
-console.log('a');
+
 app.get('/auth/logout', (req, res) => {
   console.log('logging out!');
   user = {};
   res.redirect('/');
 });
-console.log('b');
-console.log(`${process.env.NODE_ENV},Hello, 237`);
+
+console.log(`${process.env.NODE_ENV}`);
 
 // if (process.env.NODE_ENV === 'production') {
 //   app.use(express.static(path.join(__dirname, '../client/build')));
-  
+
 // }
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 if (process.env.NODE_ENV === 'production') {
-  // const privateKey = fs.readFileSync(
-  //   '/etc/letsencrypt/live/learnpassportjs.com/privkey.pem',
-  //   'utf8'
-  // );
-  // const certificate = fs.readFileSync(
-  //   '/etc/letsencrypt/live/learnpassportjs.com/cert.pem',
-  //   'utf8'
-  // );
-  // const ca = fs.readFileSync(
-  //   '/etc/letsencrypt/live/learnpassportjs.com/chain.pem',
-  //   'utf8'
-  // );
-  // const credentials = {
-  //   key: privateKey,
-  //   cert: certificate,
-  //   ca: ca,
-  // };
-  app.use(express.static("client/build"));
-  // https.createServer(credentials, app).listen(443, () => {
-  //   console.log('HTTPS Server running on port 443');
-  // });
-  // http
-  //   .createServer(function (req, res) {
-  //     res.writeHead(301, {
-  //       Location: 'https://' + req.headers['host'] + req.url,
-  //     });
-  //     res.end();
-  //   })
-  //   .listen(80);
-  // console.log('Express listening on port 80');
-} 
-  // else {
-  
-  let mongoConnectionOptions = {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useCreateIndex: true
-  };
-  mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost/finalproject",
+  app.use(express.static('client/build'));
+}
+
+let mongoConnectionOptions = {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useCreateIndex: true,
+};
+mongoose
+  .connect(
+    process.env.MONGODB_URI || 'mongodb://localhost/finalproject',
     mongoConnectionOptions
-  ).then(console.log(`MONGODB is connected`)).catch((err) => { console.log(`MONGODB connection error`, err) });
-  
-  app.use(passport.initialize());
-  app.use(passport.session());
-  app.use(routes);
-  // app.get('/', function (req, res) {
-  //   res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  // });
-  // Use apiRoutes
-  app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  )
+  .then(console.log(`MONGODB is connected`))
+  .catch((err) => {
+    console.log(`MONGODB connection error`, err);
   });
-  let PORT = 3001;
-  app.listen(PORT, function () {
-    console.log(`listening to port ${PORT}`);
-  });
-// }
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(routes);
+
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, './client/build/index.html'));
+});
+let PORT = process.env.PORT || 3001;
+app.listen(PORT, function () {
+  console.log(`listening to port ${PORT}`);
+});
