@@ -18,7 +18,6 @@
 }
 
 .page {
-  /* background-image: url("https://cdn.hipwallpaper.com/i/25/54/a3NTes.jpg"); */
   padding-bottom: 60%;
 }
 
@@ -28,6 +27,11 @@
 
 .card-text {
   font-size: 18px;
+}
+
+.saveDate {
+  color: red;
+
 }
 
 .profile-title {
@@ -90,7 +94,6 @@
 .apis {
   width: 75%;
   margin-bottom: 10px;
-
   display: inline-block;
   text-align: center;
   background-color: rgb(240, 222, 222);
@@ -123,4 +126,9 @@
 a:hover {
   color: magenta;
   text-decoration: magenta;
+}
+
+.calendarDiv {
+  margin-top: 25px;
+  margin-left: 130px;
 }

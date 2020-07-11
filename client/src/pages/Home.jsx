@@ -9,7 +9,7 @@ import Calendar from '../components/calendar/Calendar';
 import ResultsCard from '../components/searchResults/results';
 import Restaurant from '../components/searchResults/Restaurant';
 import API from '../utils/API';
-import { Col } from 'react-bootstrap';
+import { Card, Col } from 'react-bootstrap';
 import Weather from '../src_weather/components/App';
 
 
@@ -183,24 +183,26 @@ class Home extends Component {
             </div>
 
             <div className="col">
-              {this.state.plans.length ? (
-                <List>
-                  {this.state.plans.map((plan) => (
-                    <CardItem key={plan._id} title={plan.title} description={plan.description}>
-                      <strong>
-                        {plan.title}
-                      </strong>
-                      <h3>{plan.description}</h3>
-                      <DeleteBtn onClick={() => this.deletePlans(plan._id)} />
-                    </CardItem>
-                  ))}
-                </List>
-              ) : (
-                  <h5>No Results to Display</h5>
-                )}
-
+              <Card className="date-card" style={{ width: '95%', overFlowY: 'scroll' }}>
+                <Card.Body style={{ backgroundColor: 'rgb(240, 222, 222)' }}>
+                  {this.state.plans.length ? (
+                    <List>
+                      {this.state.plans.map((plan) => (
+                        <CardItem key={plan._id} title={plan.title} description={plan.description}>
+                          <strong>
+                            {plan.title}
+                          </strong>
+                          <h3>{plan.description}</h3>
+                          <DeleteBtn className="saveDate" onClick={() => this.deletePlans(plan._id)} />
+                        </CardItem>
+                      ))}
+                    </List>
+                  ) : (
+                      <h5>No Results to Display</h5>
+                    )}
+                </Card.Body>
+              </Card>
             </div>
-
           </div>
           {/* Results for Ticketmaster Api */}
           <Col>
@@ -229,7 +231,7 @@ class Home extends Component {
           </Col>
 
         </div>
-        <div>
+        <div className="calendarDiv">
           <Calendar />
         </div>
         <div className="weatherDiv">
