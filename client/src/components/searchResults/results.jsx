@@ -16,12 +16,12 @@ function ResultsCard({ name, type, savedEvent, deleteEvent, link, id }) {
               <h3>
                 Type: {type}
               </h3>
-              <button className="getTickets"><a href="https://www.ticketmaster.com/">Purchase Tickets</a></button>
+              <button className="getTickets"><a href="https://www.ticketmaster.com/" target="_blank">Purchase Tickets</a></button>
             </Row>
           </Col>
           <SaveBtn
-          id={id}
-          onClick={savedEvent}
+            id={id}
+            onClick={savedEvent}
           >Save
           </SaveBtn>
         </Row>

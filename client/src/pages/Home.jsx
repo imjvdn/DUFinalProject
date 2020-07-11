@@ -73,7 +73,7 @@ class Home extends Component {
       console.log(this.state.search)
     );
   };
-  
+
   handleSearchRestaurant = (event) => {
     console.log("you are hitting here")
     event.preventDefault();
@@ -98,13 +98,17 @@ class Home extends Component {
   };
 
   searchRestaurant = (event) => {
-   
+
     API.searchRestaurant(this.state.restaurant)
       .then((res) => {
         // let array = res.data.restaurants[0].restaurant;
+        console.log(res)
         let array = [];
-        for (let i = 0; i < 5; i++) {
-          array.push(res.data.restaurants[i]);
+        for (let i = 0; i < 20; i++) {
+          let str = res.data.restaurants[i].restaurant.cuisines;
+          console.log(str)
+          if (str.toLowerCase().includes(this.state.restaurant.toLowerCase()))
+            array.push(res.data.restaurants[i]);
           console.log(res.data.restaurants[i]);
         }
         console.log(array);
@@ -168,7 +172,7 @@ class Home extends Component {
                   value={this.state.restaurant}
                   onChange={this.handleinputchange}
                   name="restaurant"
-                  placeholder="Restaurant"
+                  placeholder="Cuisines"
                 />
                 <FormBtnRest className="apibutton"
                   // disabled={!this.state.search}
@@ -178,10 +182,10 @@ class Home extends Component {
                 >
                   Search
                 </FormBtnRest>
-                
+
               </form>
             </div>
-                    
+
             <div className="col">
               {this.state.plans.length ? (
                 <List>
@@ -191,19 +195,19 @@ class Home extends Component {
                         {plan.title}
                       </strong>
                       <h3>{plan.description}</h3>
-                  <DeleteBtn onClick={() => this.deletePlans(plan._id)} />
+                      <DeleteBtn onClick={() => this.deletePlans(plan._id)} />
                     </CardItem>
                   ))}
                 </List>
               ) : (
-                <h5>No Results to Display</h5>
-              )}
+                  <h5>No Results to Display</h5>
+                )}
 
             </div>
-            
+
           </div>
           <Col>
-            
+
             {this.state.result.map((result) => {
               return (
                 <ResultsCard
@@ -215,13 +219,14 @@ class Home extends Component {
 
           </Col>
           <Col>
-            
+
             {this.state.restaurants.map((result) => {
               console.log(result);
               return (
                 <Restaurant
                   name={result.restaurant.name}
                   type={result.restaurant.cuisines}
+                  url={result.restaurant.url}
                 ></Restaurant>
               );
             })}
@@ -230,10 +235,10 @@ class Home extends Component {
 
         </div>
         <div>
-        <Calendar />
+          <Calendar />
         </div>
-      <div className="weatherDiv">
-        <Weather />  
+        <div className="weatherDiv">
+          <Weather />
         </div>
       </div>
     );
