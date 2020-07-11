@@ -6,9 +6,11 @@
   background-repeat: no-repeat;
   background-position: center center;
 }
-/* .cal-row {
-    
-} */
+.cal-row {
+ float: right;  
+ margin-right: 1%; 
+ margin-top: -40%;
+}
 /* .calendat {
   position: static;
 } */
@@ -95,9 +97,9 @@
   background-color: rgb(146, 60, 172);
   color: rgb(233, 233, 233);
   padding: 8px;
-  margin-top: -25px;
-  margin-left: 61%;
+  float: right;
   font-family: 'Martel', serif;
+  margin-right: 8px;
 }
 .trend-btn {
   border: 2px solid black;
@@ -105,8 +107,7 @@
   background-color: rgb(146, 60, 172);
   color: rgb(233, 233, 233);
   padding: 8px;
-  margin-top: -45px;
-  margin-left: 70%;
+  float: right;
   font-family: 'Martel', serif;
 }
 a:hover {
