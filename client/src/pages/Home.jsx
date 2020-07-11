@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-// import Terminal from '../components/displays/Terminal';
 import './style.css';
-// import { Link } from 'react-router-dom';
 import { Input, TextArea, FormBtn, FormBtnRest } from '../components/form/Form';
 // import { Link } from 'react-router-dom';
 // import CardSave from '../components/cards/CardSave';
@@ -28,11 +26,11 @@ class Home extends Component {
     restaurant: '',
     restaurants: []
   };
-
+  //Automatically loads whats saved in the Database when page is loaded
   componenetDidMount() {
     this.loadPlans();
   }
-
+  //Loads the users plans from the Database
   loadPlans = () => {
     console.log("loaded plans");
     API.getPlans()
@@ -41,20 +39,20 @@ class Home extends Component {
       )
       .catch((err) => console.log(err));
   };
-
+  //Delete a plan
   deletePlans = id => {
     API.deletePlans(id)
       .then(res => this.loadPlans())
       .catch(err => console.log(err));
   };
-
+  //Enables the changes so the user is able to see what's typed
   handleinputchange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
     });
   };
-
+  //Sets title and description the user gives
   handleFormSubmit = event => {
     event.preventDefault();
     console.log('youve made it this far');
@@ -65,7 +63,7 @@ class Home extends Component {
       .then(res => this.loadPlans())
       .catch((err) => console.log(err));
   };
-
+  //Sets state of what the user wants to search for ticket master
   handlesearchsubmit = (event) => {
     event.preventDefault();
     this.searchApi(
@@ -73,7 +71,7 @@ class Home extends Component {
       console.log(this.state.search)
     );
   };
-
+  //Set state of what you're searching
   handleSearchRestaurant = (event) => {
     console.log("you are hitting here")
     event.preventDefault();
@@ -82,7 +80,7 @@ class Home extends Component {
       console.log(this.state.restaurant)
     );
   };
-
+  //Search Ticket Master Api
   searchApi = (event) => {
     API.search(this.state.search)
       .then((res) => {
@@ -96,7 +94,7 @@ class Home extends Component {
         throw err;
       });
   };
-
+  //Serach Restaurant Api
   searchRestaurant = (event) => {
 
     API.searchRestaurant(this.state.restaurant)
@@ -131,6 +129,7 @@ class Home extends Component {
         <div className="container">
           <div className="row">
             <div className="col">
+              {/* Form to create users own plan */}
               <form >
                 <Input
                   value={this.state.title}
@@ -146,13 +145,12 @@ class Home extends Component {
                 />
                 <FormBtn
                   disabled={!this.state.title}
-                  // type="submit"
-                  // handleInputChange={this.handleInputChange}
                   onClick={this.handleFormSubmit}
                 >
                   Save
                 </FormBtn>
               </form>
+              {/* Form and buttons for seraching Api's */}
               <form >
                 <input className="apis"
                   value={this.state.search}
@@ -162,8 +160,7 @@ class Home extends Component {
                 />
                 <button className="apibutton"
                   disabled={!this.state.search}
-                  value={this.state.search}
-                  // handleinputchange={this.handleinputchange}
+                  value={this.state.search}              
                   onClick={this.handlesearchsubmit}
                 >
                   Search
@@ -175,9 +172,8 @@ class Home extends Component {
                   placeholder="Cuisines"
                 />
                 <FormBtnRest className="apibutton"
-                  // disabled={!this.state.search}
+                  disabled={!this.state.restaurant}
                   value={this.state.restaurant}
-                  // handleInputChange={this.handleinputchange}
                   handleSearchRestaurant={this.handleSearchRestaurant}
                 >
                   Search
@@ -206,8 +202,8 @@ class Home extends Component {
             </div>
 
           </div>
+          {/* Results for Ticketmaster Api */}
           <Col>
-
             {this.state.result.map((result) => {
               return (
                 <ResultsCard
@@ -216,10 +212,9 @@ class Home extends Component {
                 ></ResultsCard>
               );
             })}
-
           </Col>
+          {/* Results for Restaurant Api */}
           <Col>
-
             {this.state.restaurants.map((result) => {
               console.log(result);
               return (
