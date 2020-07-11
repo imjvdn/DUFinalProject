@@ -2,9 +2,9 @@ import AmazonIcon from '../res/amazon.png';
 import FacebookIcon from '../res/facebook.png';
 import GithubIcon from '../res/github.png';
 import GoogleIcon from '../res/google.png';
-import InstagramIcon from '../res/instagram.png';
+// import InstagramIcon from '../res/instagram.png';
 import SpotifyIcon from '../res/spotify.png';
-import TwitchIcon from '../res/twitch.png';
+// import TwitchIcon from '../res/twitch.png';
 
 export const data = [
   {
@@ -39,22 +39,22 @@ export const data = [
     color: '#CB4024',
     txt: 'Login with Google',
   },
-  {
-    img: InstagramIcon,
-    name: 'instagram',
-    href: 'auth/instagram',
-    alt: 'instagram-icon',
-    colors: {
-      leftBot: '#fec564',
-      leftTop: '#5258cf',
-      rightTop: '#893dc2',
-      rightBot: '#d9317a',
-      baseCoat:
-        'linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%)',
-    },
-    color: '#d9317a',
-    txt: 'Login with Instagram',
-  },
+  // {
+  //   img: InstagramIcon,
+  //   name: 'instagram',
+  //   href: 'auth/instagram',
+  //   alt: 'instagram-icon',
+  //   colors: {
+  //     leftBot: '#fec564',
+  //     leftTop: '#5258cf',
+  //     rightTop: '#893dc2',
+  //     rightBot: '#d9317a',
+  //     baseCoat:
+  //       'linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%)',
+  //   },
+  //   color: '#d9317a',
+  //   txt: 'Login with Instagram',
+  // },
   {
     img: SpotifyIcon,
     name: 'spotify',
@@ -63,12 +63,12 @@ export const data = [
     color: '#1EB954',
     txt: 'Login with Spotify',
   },
-  {
-    img: TwitchIcon,
-    name: 'twitch.js',
-    href: 'auth/twitch',
-    alt: 'twitch-icon',
-    color: '#5F3BAD',
-    txt: 'Login with Twitch',
-  },
+  // {
+  //   img: TwitchIcon,
+  //   name: 'twitch.js',
+  //   href: 'auth/twitch',
+  //   alt: 'twitch-icon',
+  //   color: '#5F3BAD',
+  //   txt: 'Login with Twitch',
+  // },
 ];
