@@ -31,9 +31,8 @@ const Results = styled.div`
 `;
 
 const LocationWrapper = styled.div`
-  flex-basis:50%;
+  flex-basis: 50%;
   padding: 30px;
-
 `;
 
 const CurrentWeatherWrapper = styled.div`
@@ -44,7 +43,6 @@ const CurrentWeatherWrapper = styled.div`
   grid-template-columns: auto 1fr;
   @media ${device.mobileL} {
     flex-basis: 25%;
-  
   }
   @media ${device.tablet} {
     grid-template-columns: 1fr 1fr;
@@ -58,7 +56,6 @@ const WeatherIcon = styled.div`
   color: #ffffff;
   @media ${device.tablet} {
     font-size: 100px;
-  
   }
   @media ${device.laptop} {
     font-size: 120px;
@@ -68,8 +65,7 @@ const WeatherIcon = styled.div`
   }
 `;
 
-const TemperatureWrapper = styled.div`
-`;
+const TemperatureWrapper = styled.div``;
 
 const Temperature = styled.h3`
   display: inline-block;
@@ -121,7 +117,6 @@ const Result = ({ weather }) => {
     wind,
     highestTemp,
     lowestTemp,
- 
   } = weather;
 
   let weatherIcon = null;
