@@ -226,6 +226,7 @@ class Home extends Component {
                 <Restaurant
                   name={result.restaurant.name}
                   type={result.restaurant.cuisines}
+                  url={result.restaurant.url}
                 ></Restaurant>
               );
             })}
