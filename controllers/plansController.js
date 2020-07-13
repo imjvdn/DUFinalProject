@@ -18,7 +18,10 @@ module.exports = {
   create: function(req, res) {
     db.Plan
       .create(req.body)
-      .then(dbModel => res.json(dbModel))
+      .then(function(dbPlan) { return db.User.findOneAndUpdate({}, { $push: { notes: dbPlan._id} }, { new: true });
+      })
+      .then(function(dbModel) {
+        res.json(dbModel)})
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {

@@ -6,7 +6,15 @@
   background-repeat: no-repeat;
   background-position: center center;
 }
-
+.tmres {
+  color: #000000;
+}
+.search-list {
+  background-color: rgb(223, 223, 223);
+}
+.getTickets {
+  margin-left: 130px;
+}
 .cal-row {
   float: right;
   margin-right: 1%;

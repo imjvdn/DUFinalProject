@@ -21,6 +21,7 @@ const keys = require('../config');
 const chalk = require('chalk');
 const Plan = require('../models/plan');
 const User = require('../models/user');
+const Github = require('../models/github');
 
 let user = {};
 
@@ -60,7 +61,7 @@ passport.use(
       console.log(chalk.blue(JSON.stringify(profile)));
       user = { ...profile };
 
-      console.log(profile.id);
+      console.log("...profile", user);
 
       User.findOne({ username: profile.id }, (err, user) => {
         console.log('Anything you want');
@@ -74,25 +75,35 @@ passport.use(
             displayname: profile.displayName,
             email: profile.emails[0].value,
             username: profile.id,
+            // plan: mongoose.Schema.Types.ObjectId, ref: "Plan"
           }).then(function (profile) {
+            console.log(user);
             return done(null, profile);
           });
-          app.post(function (req, res) {
-            db.Plan.create(req.body)
-              .then(function (dbPlan) {
-                return db.User.findOneAndUpdate(
-                  {},
-                  { $push: { plan: dbPlan._id } },
-                  { new: true }
-                );
-              })
-              .then(function (dbUser) {
-                return dbUser;
-              })
-              .catch(function (err) {
-                console.log(err);
-              });
-          });
+          // app.get("api/plans", function(req, res) {
+          //   db.User.findOne({ _id: req.params.id })
+          //   .populate("Plan")
+          //   .then(function(dbUser) {
+          //     console.log("found profile id", profile.id);
+          //     return(dbUser);
+          //   })
+          //   .catch(function(err) {
+          //     console.log(err);
+          //   })
+          // })
+          // app.post("/user/:id", function (req, res) {
+          //   db.Plan.create(req.body)
+          //     .then(function (dbUser) {
+          //       return db.User.findOneAndUpdate(
+          //         {},
+          //         { $push: { plan: dbUser._id } },
+          //         { new: true }
+          //       );
+          //     })
+          //     .catch(function (err) {
+          //       console.log(err);
+          //     });
+          // })
         }
       });
     }
@@ -114,7 +125,7 @@ passport.use(
 
       console.log(Plan);
 
-      User.findOne({ username: profile.id }, (err, user) => {
+      Github.findOne({ username: profile.id }, (err, user) => {
         console.log('Anything you want');
         if (err) {
           console.log('User.js post error: ', err);
@@ -122,29 +133,37 @@ passport.use(
           console.log('User already exists', user);
           return cb(null, profile);
         } else {
-          db.User.create({
+          db.Github.create({
             displayname: profile.displayName,
             email: profile.email,
             username: profile.id,
           }).then(function (profile) {
             return cb(null, profile);
           });
+          // app.get("api/plans", function (req, res) {
+          //   db.user.find({ _id: req.params.id })
+          //     .populate("Plan")
+          //     .then(function (dbUser) {
+          //       res.json(dbUser);
+          //     })
+          //     .catch(function (err) {
+          //       console.log(err);
+          //     })
+          // })
+          // app.post("/api/plans", function (req, res) {
+          //   db.Plan.create(req.body)
+          //     .then(function (dbPlan) {
+          //       return db.User.findOneAndUpdate(
+          //         { _id: req.params.id },
+          //         { $push: { plan: dbPlan._id } },
+          //         { new: true }
+          //       );
+          //     })
+          //     .catch(function (err) {
+          //       console.log(err);
+          //     });
+          // })
 
-          db.Plan.create({
-            title: 'testing title',
-            description: 'testing 123',
-          })
-            .then(function (dbPlan) {
-              return db.User.findOneAndUpdate(
-                {},
-                { $push: { plan: dbPlan._id } },
-                { new: true }
-              );
-            })
-
-            .catch(function (err) {
-              console.log(err);
-            });
         }
       });
     }
@@ -174,29 +193,37 @@ passport.use(
           console.log('User already exists', user);
           return cb(null, profile);
         } else {
-          db.User.create({
+          db.Google.create({
             displayname: profile.displayName,
             email: profile.email,
             username: profile.id,
           }).then(function (profile) {
             return cb(null, profile);
           });
-
-          db.Plan.create({
-            title: 'testing title',
-            description: 'testing 123',
+          app.get("api/plans", function (req, res) {
+            db.Google.find({ _id: req.params.id })
+              .populate("Plan")
+              .then(function (dbUser) {
+                res.json(dbUser);
+              })
+              .catch(function (err) {
+                console.log(err);
+              })
           })
-            .then(function (dbPlan) {
-              return db.User.findOneAndUpdate(
-                {},
-                { $push: { plan: dbPlan._id } },
-                { new: true }
-              );
-            })
+          app.post("/api/plans", function (req, res) {
+            db.Plan.create(req.body)
+              .then(function (dbPlan) {
+                return db.User.findOneAndUpdate(
+                  { _id: req.params.id },
+                  { $push: { plan: dbPlan._id } },
+                  { new: true }
+                );
+              })
+              .catch(function (err) {
+                console.log(err);
+              });
+          })
 
-            .catch(function (err) {
-              console.log(err);
-            });
         }
       });
     }
@@ -353,16 +380,40 @@ app.get(
   '/auth/amazon/callback',
   passport.authenticate('amazon'),
   (req, res) => {
-    res.redirect('/profile');
-  }
-);
+    // db.User.findOne({ _id: req.params.id })
+    // .populate("Plan")
+    // .then(function(dbUser) {
+    //   return(dbUser);
+    // })
+    // db.Plan.create(req.body)
+    //   .then(function (dbPlan) {
+    //     return db.User.findOneAndUpdate({}, { $push: { Plan: dbPlan._id } }, { new: true });
+    //   })
+    //   .then(function () {
+    //     res.redirect('/profile');
+    //   })
+      res.redirect('/profile');
+  })
+
 
 app.get('/auth/github', passport.authenticate('github'));
 app.get(
   '/auth/github/callback',
   passport.authenticate('github'),
   (req, res) => {
-    res.redirect('/profile');
+    // db.User.findOne({ _id: req.params.id })
+    // .populate("Plan")
+    // .then(function(dbUser) {
+    //   return(dbUser);
+    // })
+    // db.Plan.create(req.body)
+    //   .then(function (dbPlan) {
+    //     return db.User.findOneAndUpdate({}, { $push: { Plan: dbPlan._id } }, { new: true });
+    //   })
+    //   .then(function () {
+    //     res.redirect('/profile');
+    //   })
+      res.redirect('/profile');
   }
 );
 
@@ -409,13 +460,40 @@ app.get(
 
 app.get('/user', (req, res) => {
   console.log('getting user data!');
+  console.log("returning", user);
   res.send(user);
 });
 
+// app.get("/user/:id", function (req, res) {
+//   db.User.findOne({ _id: req.params.id })
+//     .populate("Plan")
+//     .then(function (dbUser) {
+//       console.log("found profile id", profile.id);
+//       return (dbUser);
+//     })
+//     .catch(function (err) {
+//       console.log(err);
+//     })
+// })
+// app.post("/user/:id", function (req, res) {
+//   db.Plan.create()
+//     .then(function (dbUser) {
+//       return db.User.findOneAndUpdate(
+//         {},
+//         { $push: { plan: dbUser._id } },
+//         { new: true }
+//       );
+//     })
+//     .catch(function (err) {
+//       console.log(err);
+//     });
+// })
+
 app.get('/auth/logout', (req, res) => {
-  console.log('logging out!');
+  console.log('logging out!', user);
   user = {};
   res.redirect('/');
+  return(user);
 });
 
 console.log(`${process.env.NODE_ENV}`);
