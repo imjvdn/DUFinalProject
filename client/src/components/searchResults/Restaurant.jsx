@@ -5,9 +5,9 @@ function ResultsRestaurant({ name, type, savedRestaurant, deleteEvent, url, link
   return (
     <div className="result-div">
       <li className="search-list list-group-item">
-        <Row>
+        <Row id={name + "Card"} key={id}>
           <Col>
-            <Row>
+            <Row id={name + "Card"} key={id}>
               <h3>
                 Name: {name}
               </h3>
@@ -16,8 +16,9 @@ function ResultsRestaurant({ name, type, savedRestaurant, deleteEvent, url, link
               <h3>
                 Type: {type}
               </h3>
-              <button className="getReservations"><a href={url} target="_blank">Make Reservations</a></button>
+              
             </Row>
+            <button className="getReservations"><a href={url} target="_blank">Make Reservations</a></button>
           </Col>
           <SaveBtn
             id={id}

@@ -1,13 +1,13 @@
 import React from "react";
 import { Row, Col } from 'react-bootstrap';
 import { SaveBtn } from "./ResBtn";
-function ResultsCard({ name, type, savedEvent, deleteEvent, link, id }) {
+function ResultsCard({ name, type, saveEvent, deleteEvent, link, id }) {
   return (
     <div className="result-div">
       <li className="search-list list-group-item">
-        <Row>
+        <Row id={name + "Card"} key={id}>
           <Col>
-            <Row>
+            <Row id={name + "Card"} key={id}>
               <h3>
                 Name: {name}
               </h3>
@@ -21,7 +21,7 @@ function ResultsCard({ name, type, savedEvent, deleteEvent, link, id }) {
           </Col>
           <SaveBtn
             id={id}
-            onClick={savedEvent}
+            onClick={saveEvent}
           >Save
           </SaveBtn>
         </Row>
