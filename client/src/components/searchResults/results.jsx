@@ -21,7 +21,7 @@ function ResultsCard({ name, type, saveEvent, deleteEvent, link, id }) {
           </Col>
           <SaveBtn
             id={id}
-            onClick={saveEvent}
+            onClick = {() => saveEvent(id)}
           >Save
           </SaveBtn>
         </Row>
