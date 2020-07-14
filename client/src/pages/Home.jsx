@@ -261,7 +261,9 @@ class Home extends Component {
               <Card className="date-card" style={{ width: '95%', overFlowY: 'scroll' }}>
                 <Card.Body style={{ backgroundColor: 'rgb(240, 222, 222)' }}>
                   {this.state.plans.length ? (
+                    
                     <List>
+                      <h2>Saved Plans</h2>
                       {this.state.plans.map((plan) => (
                         <CardItem key={plan._id} title={plan.title} description={plan.description}>
                           <h3>
