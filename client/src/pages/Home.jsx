@@ -157,6 +157,11 @@ class Home extends Component {
                 </FormBtn>
               </form>
               {/* Form and buttons for seraching Api's */}
+              
+              <form>
+                <input type="date"></input>
+              </form>
+
               <form >
                 <input className="apis"
                   value={this.state.search}
