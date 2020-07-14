@@ -1,6 +1,7 @@
 module.exports = {
     Plan: require("./plan"),
     User: require("./user"),
-    Homeplan: require("./home")
+    Github: require("./github"),
+    Google: require("./google")
   };
   

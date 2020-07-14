@@ -6,22 +6,26 @@
   background-repeat: no-repeat;
   background-position: center center;
 }
-
+.tmres {
+  color: #000000;
+}
+.search-list {
+  background-color: rgb(223, 223, 223);
+}
+.getTickets {
+  margin-left: 130px;
+}
 .cal-row {
   float: right;
   margin-right: 1%;
-  margin-top: -40%;
+  margin-top: -10%;
 }
 
-/* .calendat {
-  position: static;
-} */
 .page-title {
   background-color: black;
 }
 
 .page {
-  /* background-image: url("https://cdn.hipwallpaper.com/i/25/54/a3NTes.jpg"); */
   padding-bottom: 60%;
 }
 
@@ -31,6 +35,11 @@
 
 .card-text {
   font-size: 18px;
+}
+
+.saveDate {
+  color: red;
+
 }
 
 .profile-title {
@@ -56,7 +65,15 @@
   width: 50%;
   display: inline-flex;
 }
-
+.date-input {
+  text-align: center;
+  background-color: rgb(240, 222, 222);
+  color: black;
+  font-size: 18px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  margin-top: -15px;
+}
 .form-control {
   text-align: center;
   background-color: rgb(240, 222, 222);
@@ -93,7 +110,6 @@
 .apis {
   width: 75%;
   margin-bottom: 10px;
-
   display: inline-block;
   text-align: center;
   background-color: rgb(240, 222, 222);
@@ -126,4 +142,9 @@
 a:hover {
   color: magenta;
   text-decoration: magenta;
+}
+
+.calendarDiv {
+  margin-top: 25px;
+  margin-left: 130px;
 }

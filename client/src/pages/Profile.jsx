@@ -4,22 +4,21 @@ import React, { Component } from 'react';
 import Calendar from "../components/calendar/Calendar";
 import { Row } from 'react-bootstrap';
 import API from '../utils/API';
-// import ProfileCard from '../components/cards/ProfileCard';
-// import _ from 'lodash';
-import { Card, ListGroup, ListGroupItem, Col } from 'react-bootstrap';
-// import { Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { ProfileItem, List } from '../components/cards/ProfileCard';
 import "./style.css";
 
-// const LoginMsg = 'This can be a profile page';
 class Profile extends Component {
+  //States for users profile to set for rednering whats in the database
   state = {
     plans: [],
     username: ''
   }
+  //Automatically loads the plans that the user already saves
   componentDidMount() {
     this.loadPlans();
   }
+  //Api call to get whats saved in the database
   loadPlans = () => {
     console.log("loaded plans");
     API.getPlans()
@@ -38,7 +37,6 @@ class Profile extends Component {
             <a className="create-btn" href="/">Plan a Night</a>
         <Row className="prof-row">
           <Card className="prof-card" style={{ width: '84%', overFlowY: 'scroll' }}>
-            {/* <Card.Img variant="top" src="holder.js/100px180?text=Image cap" /> */}
             <Card.Body style={{ backgroundColor: 'cadetBlue'}}>
               {this.state.plans.length ? (
                 <List>
@@ -48,17 +46,11 @@ class Profile extends Component {
                         {plan.title}
                       </strong>
                       <h3>{plan.description}</h3>
-                      {/* <DeleteBtn onClick={() => this.deletePlans(plan._id)} /> */}
                       <Card.Body>
                         {plan.date}
                       </Card.Body>
                     </ProfileItem>
-                    // <ProfileItem>
-                    //   <h4>{plan.date}</h4>
-                    // </ProfileItem>
-
                   )
-
                   )}
                 </List>
               ) : (
