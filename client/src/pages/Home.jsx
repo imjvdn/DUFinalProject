@@ -32,10 +32,10 @@ class Home extends Component {
   }
   //Loads the users plans from the Database
   loadPlans = () => {
-    console.log("loaded plans");
+    // console.log("loaded plans");
     API.getPlans()
       .then((res) =>
-        this.setState({ plans: res.data, title: "", description: "" })
+        this.setState({ plans: res.data })
       )
       .catch((err) => console.log(err));
   };
@@ -59,7 +59,7 @@ class Home extends Component {
     API.savePlans({
       title: this.state.title,
       description: this.state.description
-    })
+    }).then((res) => this.setState({ title: "", description: "" }))
       .then(res => this.loadPlans())
       .catch((err) => console.log(err));
   };
@@ -84,8 +84,13 @@ class Home extends Component {
   searchApi = (event) => {
     API.search(this.state.search)
       .then((res) => {
+        let tmArray = [];
+        for (let i = 0; i < 5; i++) {
+          tmArray.push(res.data._embedded.events[i]);
+        }
         this.setState({
-          result: res.data._embedded.events,
+          restaurants: [],
+          result: tmArray,
           search: '',
         });
         console.log(res.data._embedded.events);
@@ -96,7 +101,7 @@ class Home extends Component {
   };
   //Serach Restaurant Api
   searchRestaurant = (event) => {
-
+    
     API.searchRestaurant(this.state.restaurant)
       .then((res) => {
         // let array = res.data.restaurants[0].restaurant;
@@ -111,6 +116,7 @@ class Home extends Component {
         }
         console.log(array);
         this.setState({
+          result: [],
           restaurants: array,
           restaurant: '',
         });
@@ -189,10 +195,10 @@ class Home extends Component {
                     <List>
                       {this.state.plans.map((plan) => (
                         <CardItem key={plan._id} title={plan.title} description={plan.description}>
-                          <strong>
+                          <h3>
                             {plan.title}
-                          </strong>
-                          <h3>{plan.description}</h3>
+                          </h3>
+                          <h5>{plan.description}</h5>
                           <DeleteBtn className="saveDate" onClick={() => this.deletePlans(plan._id)} />
                         </CardItem>
                       ))}
@@ -205,7 +211,7 @@ class Home extends Component {
             </div>
           </div>
           {/* Results for Ticketmaster Api */}
-          <Col>
+          <Col className="tmres">
             {this.state.result.map((result) => {
               return (
                 <ResultsCard

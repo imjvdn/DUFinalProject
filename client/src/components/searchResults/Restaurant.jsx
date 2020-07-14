@@ -16,8 +16,9 @@ function ResultsRestaurant({ name, type, savedRestaurant, deleteEvent, url, link
               <h3>
                 Type: {type}
               </h3>
-              <button className="getReservations"><a href={url} target="_blank">Make Reservations</a></button>
+              
             </Row>
+            <button className="getReservations"><a href={url} target="_blank">Make Reservations</a></button>
           </Col>
           <SaveBtn
             id={id}
