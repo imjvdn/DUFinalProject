@@ -203,6 +203,9 @@ class Home extends Component {
                   name="description"
                   placeholder="Description"
                 />
+                <form>
+                <input className="date-input" type="date"></input>
+              </form>
                 <FormBtn
                   disabled={!this.state.title}
                   onClick={this.handleFormSubmit}
@@ -211,11 +214,6 @@ class Home extends Component {
                 </FormBtn>
               </form>
               {/* Form and buttons for seraching Api's */}
-              
-              <form>
-                <input className="date-input" type="date"></input>
-              </form>
-
               <form >
                 <input className="apis"
                   value={this.state.search}
