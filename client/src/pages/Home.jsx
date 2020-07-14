@@ -18,6 +18,7 @@ class Home extends Component {
     name: '',
     title: '',
     displayname: '',
+    date: '',
     email: '',
     description: '',
     search: '',
@@ -112,7 +113,8 @@ class Home extends Component {
     console.log('youve made it this far');
     API.savePlans({
       title: this.state.title,
-      description: this.state.description
+      description: this.state.description,
+      date: this.state.date
     }).then((res) => this.setState({ title: "", description: "" }))
       .then(res => this.loadPlans())
       .catch((err) => console.log(err));
@@ -204,7 +206,15 @@ class Home extends Component {
                   placeholder="Description"
                 />
                 <form>
-                <input className="date-input" type="date"></input>
+                <input 
+                  className="date-input" 
+                  type="date"
+                  onChange={this.handleinputchange}
+                  name="date"
+                  value={this.state.date}
+                  >
+
+                  </input>
               </form>
                 <FormBtn
                   disabled={!this.state.title}
