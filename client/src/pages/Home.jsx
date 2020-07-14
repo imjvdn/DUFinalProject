@@ -72,26 +72,27 @@ class Home extends Component {
   };
 
   saveRestaurant = event => {
-    event.preventDefault();
     console.log("Saving Restaurant")
-    const eventId = event.target.getAttribute("data-id");
+    const eventId = event
+    // console.log(event);
     const newState = { ...this.state };
-    let savedRestaurant = this.state.restaurants.filter(event => event.id===eventId);
+    let savedRestaurant = this.state.restaurants.filter(restaurant => restaurant.id === eventId);
+    console.log(eventId);
     const newEvent = {
-      title: savedRestaurant[0].restaurant.cuisine.name,
-      type: savedRestaurant[0].restaurant.cuisine.type,
-      link: savedRestaurant[0].restaurant.cuisine.url
+      title: savedRestaurant[0].restaurant.name,
+      type: savedRestaurant[0].restaurant.type,
+      link: savedRestaurant[0].restaurant.url
     };
     if (this.state.result[eventId]) {
       return alert("You already have that event saved.");
     } else {
-      event.preventDefault();
+      // event.preventDefault();
       newState.result[eventId]=newEvent;
       this.setState(newState);
       API.savePlans({
-        title: savedRestaurant[0].restaurant.cuisine.name,
-        type: savedRestaurant[0].restaurant.cuisine.type,
-        link: savedRestaurant[0].restaurant.cuisine.url
+        title: savedRestaurant[0].restaurant.name,
+        type: savedRestaurant[0].restaurant.type,
+        link: savedRestaurant[0].restaurant.url
       })
       .then(res => this.loadPlans())
       .catch(err => console.log(err));
@@ -165,7 +166,7 @@ class Home extends Component {
           console.log(str)
           if (str.toLowerCase().includes(this.state.restaurant.toLowerCase()))
             array.push(res.data.restaurants[i]);
-          console.log(res.data.restaurants[i]);
+          console.log(res.data.restaurants[i].restaurant.name);
         }
         console.log(array);
         this.setState({
@@ -173,7 +174,7 @@ class Home extends Component {
           restaurants: array,
           restaurant: '',
         });
-        console.log(res.data);
+        console.log(this.state.restaurants[0].restaurant.name);
         // console.log(result)
       })
       .catch((err) => {
