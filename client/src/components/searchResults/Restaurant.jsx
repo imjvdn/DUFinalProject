@@ -22,7 +22,7 @@ function ResultsRestaurant({ name, type, savedRestaurant, deleteEvent, url, link
           </Col>
           <SaveBtn
             id={id}
-            onClick={savedRestaurant}
+            onClick = {() => savedRestaurant(id)}
           >Save
           </SaveBtn>
         </Row>
