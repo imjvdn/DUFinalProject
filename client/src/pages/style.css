@@ -39,7 +39,6 @@
 
 .saveDate {
   color: red;
-
 }
 
 .profile-title {
@@ -104,7 +103,6 @@
 
 .form-group {
   width: 100%;
-
 }
 
 .apis {
@@ -147,4 +145,27 @@ a:hover {
 .calendarDiv {
   margin-top: 25px;
   margin-left: 130px;
+}
+
+@media (max-width: 668px) {
+ 
+  .calendarDiv {
+    margin-top: 25px;
+    margin-left: 10px;
+  }
+
+  .calendar {
+    width: 80%;
+    height: 80%;
+  }
+
+  .form-control {
+    font-size: 18px;
+  }
+  .weatherdiv {
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    margin-left: 0 auto; 
+  }
 }
