@@ -380,18 +380,6 @@ app.get(
   '/auth/amazon/callback',
   passport.authenticate('amazon'),
   (req, res) => {
-    // db.User.findOne({ _id: req.params.id })
-    // .populate("Plan")
-    // .then(function(dbUser) {
-    //   return(dbUser);
-    // })
-    // db.Plan.create(req.body)
-    //   .then(function (dbPlan) {
-    //     return db.User.findOneAndUpdate({}, { $push: { Plan: dbPlan._id } }, { new: true });
-    //   })
-    //   .then(function () {
-    //     res.redirect('/profile');
-    //   })
       res.redirect('/profile');
   })
 
@@ -401,18 +389,6 @@ app.get(
   '/auth/github/callback',
   passport.authenticate('github'),
   (req, res) => {
-    // db.User.findOne({ _id: req.params.id })
-    // .populate("Plan")
-    // .then(function(dbUser) {
-    //   return(dbUser);
-    // })
-    // db.Plan.create(req.body)
-    //   .then(function (dbPlan) {
-    //     return db.User.findOneAndUpdate({}, { $push: { Plan: dbPlan._id } }, { new: true });
-    //   })
-    //   .then(function () {
-    //     res.redirect('/profile');
-    //   })
       res.redirect('/profile');
   }
 );
