@@ -8,8 +8,8 @@ const GITHUB = {
   clientSecret: 'a9428e7a75c59e24a32c0f473da2dbd42d5fbb89',
 };
 const FACEBOOK = {
-  clientID: '2503599789703821',
-  clientSecret: '645088b310270cf3abbda58e01f65e96',
+  clientID: '303505617442279',
+  clientSecret: '74e08deef9905517d434308ee40be5f6',
 };
 const GOOGLE = {
   clientID:
