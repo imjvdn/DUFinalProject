@@ -112,11 +112,6 @@ button {
   font-weight: 200;
 }
 
-.calendar {
-  position: static;
-  top: 700px;
-  margin-left: 15%;
-}
 
 .page {
   width: 95%;
@@ -155,10 +150,7 @@ button {
   float: right;
   color: #e74944;
 }
-/* .result-div {
-  
-  margin-left: 55%;
-} */
+
 .mac-btn {
   font-size: 9px;
   width: 11px;
@@ -190,10 +182,6 @@ button {
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
 }
-
-/* .col {
-  display: inline-block;
-} */
 
 .col-4 {
   width: 25%;
@@ -252,12 +240,18 @@ button {
   }
 }
 
-@media (max-width: 660px) {
+@media (max-width: 668px) {
   .page {
     width: 98%;
   }
   .menu-bar {
     padding-left: 0;
     padding-right: 0;
+  }
+ 
+  .weatherdiv {
+    display: inline-block;
+    width: 750px !important;
+    position: relative;
   }
 }

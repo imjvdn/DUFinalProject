@@ -48,9 +48,9 @@ class Home extends Component {
   };
 
   saveItem = event => {
-    event.preventDefault();
+    // event.preventDefault();
     console.log("Saving Event")
-    const eventId = event.target.getAttribute("data-id");
+    const eventId = event;
     const newState = { ...this.state };
     let savedEvent = this.state.result.filter(event => event.id===eventId);
     const newEvent = {
@@ -60,7 +60,7 @@ class Home extends Component {
     if (this.state.result[eventId]) {
       return alert("You already have that event saved.");
     } else {
-      event.preventDefault();
+      // event.preventDefault();
       newState.result[eventId]=newEvent;
       this.setState(newState);
       API.savePlans({
@@ -141,12 +141,13 @@ class Home extends Component {
     API.search(this.state.search)
       .then((res) => {
         let tmArray = [];
-        for (let i = 0; i < 5; i++) {
-          tmArray.push(res.data._embedded.events[i]);
-        }
+        // for (let i = 0; i < 2; i++) {
+        //   tmArray.push(res.data._embedded.events[i]);
+        //   console.log(tmArray);
+        // }
         this.setState({
           restaurants: [],
-          result: tmArray,
+          result: res.data._embedded.events,
           search: '',
         });
         console.log(res.data._embedded.events);
@@ -205,7 +206,6 @@ class Home extends Component {
                   name="description"
                   placeholder="Description"
                 />
-                <form>
                 <input 
                   className="date-input" 
                   type="date"
@@ -215,7 +215,9 @@ class Home extends Component {
                   >
 
                   </input>
-              </form>
+                </form>
+                
+              <form>
                 <FormBtn
                   disabled={!this.state.title}
                   onClick={this.handleFormSubmit}
@@ -259,7 +261,9 @@ class Home extends Component {
               <Card className="date-card" style={{ width: '95%', overFlowY: 'scroll' }}>
                 <Card.Body style={{ backgroundColor: 'rgb(240, 222, 222)' }}>
                   {this.state.plans.length ? (
+                    
                     <List>
+                      <h2>Saved Plans</h2>
                       {this.state.plans.map((plan) => (
                         <CardItem key={plan._id} title={plan.title} description={plan.description}>
                           <h3>
