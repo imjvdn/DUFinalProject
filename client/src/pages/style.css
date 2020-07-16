@@ -6,15 +6,19 @@
   background-repeat: no-repeat;
   background-position: center center;
 }
+
 .tmres {
   color: #000000;
 }
+
 .search-list {
   background-color: rgb(223, 223, 223);
 }
+
 .getTickets {
   margin-left: 130px;
 }
+
 .cal-row {
   float: right;
   margin-right: 1%;
@@ -61,9 +65,13 @@
 }
 
 .searchInput {
-  width: 50%;
+  width: 75%;
+  margin-left: 200px;
+
   display: inline-flex;
 }
+
+
 .date-input {
   text-align: center;
   background-color: rgb(240, 222, 222);
@@ -73,6 +81,7 @@
   border-radius: 5px;
   margin-top: -15px;
 }
+
 .form-control {
   text-align: center;
   background-color: rgb(240, 222, 222);
@@ -143,12 +152,11 @@ a:hover {
 }
 
 .calendarDiv {
-  margin-top: 25px;
-  margin-left: 130px;
+  display: inline-block;
 }
 
 @media (max-width: 668px) {
- 
+
   .calendarDiv {
     margin-top: 25px;
     margin-left: 10px;
@@ -162,10 +170,11 @@ a:hover {
   .form-control {
     font-size: 18px;
   }
+
   .weatherdiv {
     display: inline-block;
     width: 100%;
     position: relative;
-    margin-left: 0 auto; 
+    margin-left: 0 auto;
   }
 }

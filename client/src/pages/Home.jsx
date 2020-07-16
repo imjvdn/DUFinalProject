@@ -52,7 +52,7 @@ class Home extends Component {
     console.log("Saving Event")
     const eventId = event;
     const newState = { ...this.state };
-    let savedEvent = this.state.result.filter(event => event.id===eventId);
+    let savedEvent = this.state.result.filter(event => event.id === eventId);
     const newEvent = {
       title: savedEvent[0].name,
       type: savedEvent[0].type
@@ -61,14 +61,14 @@ class Home extends Component {
       return alert("You already have that event saved.");
     } else {
       // event.preventDefault();
-      newState.result[eventId]=newEvent;
+      newState.result[eventId] = newEvent;
       this.setState(newState);
       API.savePlans({
         title: savedEvent[0].name,
-        type: savedEvent[0].type 
+        type: savedEvent[0].type
       })
-      .then(res => this.loadPlans())
-      .catch(err => console.log(err));
+        .then(res => this.loadPlans())
+        .catch(err => console.log(err));
     };
   };
 
@@ -88,15 +88,15 @@ class Home extends Component {
       return alert("You already have that event saved.");
     } else {
       // event.preventDefault();
-      newState.result[eventId]=newEvent;
+      newState.result[eventId] = newEvent;
       this.setState(newState);
       API.savePlans({
         title: savedRestaurant[0].restaurant.name,
         type: savedRestaurant[0].restaurant.type,
         link: savedRestaurant[0].restaurant.url
       })
-      .then(res => this.loadPlans())
-      .catch(err => console.log(err));
+        .then(res => this.loadPlans())
+        .catch(err => console.log(err));
     };
   };
 
@@ -158,7 +158,7 @@ class Home extends Component {
   };
   //Serach Restaurant Api
   searchRestaurant = (event) => {
-    
+
     API.searchRestaurant(this.state.restaurant)
       .then((res) => {
         // let array = res.data.restaurants[0].restaurant;
@@ -206,17 +206,17 @@ class Home extends Component {
                   name="description"
                   placeholder="Description"
                 />
-                <input 
-                  className="date-input" 
+                <input
+                  className="date-input"
                   type="date"
                   onChange={this.handleinputchange}
                   name="date"
                   value={this.state.date}
-                  >
+                >
 
-                  </input>
-                </form>
-                
+                </input>
+              </form>
+
               <form>
                 <FormBtn
                   disabled={!this.state.title}
@@ -235,7 +235,7 @@ class Home extends Component {
                 />
                 <button className="apibutton"
                   disabled={!this.state.search}
-                  value={this.state.search}              
+                  value={this.state.search}
                   onClick={this.handlesearchsubmit}
                 >
                   Search
@@ -261,7 +261,7 @@ class Home extends Component {
               <Card className="date-card" style={{ width: '95%', overFlowY: 'scroll' }}>
                 <Card.Body style={{ backgroundColor: 'rgb(240, 222, 222)' }}>
                   {this.state.plans.length ? (
-                    
+
                     <List>
                       <h2>Saved Plans</h2>
                       {this.state.plans.map((plan) => (
@@ -280,6 +280,11 @@ class Home extends Component {
                 </Card.Body>
               </Card>
             </div>
+            <br>
+            </br>
+            <div className="calendarDiv">
+              <Calendar />
+            </div>
           </div>
           {/* Results for Ticketmaster Api */}
           <Col className="tmres">
@@ -294,6 +299,7 @@ class Home extends Component {
                 ></ResultsCard>
               );
             })}
+          
           </Col>
           {/* Results for Restaurant Api */}
           <Col>
@@ -314,9 +320,9 @@ class Home extends Component {
           </Col>
 
         </div>
-        <div className="calendarDiv">
+        {/* <div className="calendarDiv">
           <Calendar />
-        </div>
+        </div> */}
         <div className="weatherDiv">
           <Weather />
         </div>
