@@ -6,9 +6,9 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import device from '../responsive/Device';
 
 const SearchBar = styled.form`
-  top: ${({ showResult }) => (showResult )};
+  top: ${({ showResult }) => (showResult)};
   position: relative;
-  margin-left: 500px;
+  margin-left: 600px;
   max-width: 600px;
   transition: 0.8s 0.5s;
   @media ${device.laptopL} {
@@ -69,7 +69,7 @@ const SearchCity = ({ submit, value, change, showResult }) => {
   return (
     <>
       <SearchBar showResult={showResult} onSubmit={submit}>
-        <SearchInput type="text" value={value} placeholder="Enter city" onChange={change} />
+        <SearchInput type="text" value={value} placeholder="Enter city for Weather" onChange={change} />
         <SearchIcon>
           <FontAwesomeIcon icon={faSearch} />
         </SearchIcon>
