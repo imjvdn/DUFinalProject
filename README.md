@@ -8,7 +8,7 @@ This is React-based app created to allows a user a space to plan the perfect nig
 
 ## Installation
 
-1. Clone [Nite-tinerary](https://github.com/imjvdn/DUFinalProject) to your computer.
+1. Clone [Nite-tinerary](https://nitetinerary.herokuapp.com/) to your computer.
 
 ```bash
 https://github.com/imjvdn/DUFinalProject.git
@@ -23,7 +23,7 @@ $ npm install
 3. cd into the client and npm install in the client.
 
 ```bash
-$ cd client 
+$ cd client
 $ npm install
 ```
 
@@ -39,9 +39,10 @@ $ npm install
 
 ## Authors
 
-[Jadan Morrow](https://github.com/imjvdn), [Tammy Richardson](https://github.com/tamrichardson), 
+[Jadan Morrow](https://github.com/imjvdn), [Tammy Richardson](https://github.com/tamrichardson),
 [Skip Khamvongsa](https://github.com/skip1113),
 [Clay Hill](https://github.com/claywhill)
 
 ## License
+
 [MIT](https://choosealicense.com/licenses/mit/)
