@@ -6,6 +6,8 @@ Denver University Coding Bootcamp
 
 This is React-based app created to allows a user a space to plan the perfect night out with a very special someone. This app will allow the user to search for events and restaurants, check the weather and save a detailed tailored itinerary complete with plan name and description. This app also provides a means to scrap that date that may not be shaping up the way you had hoped! Feel free to login with anyone of the many of login methods available and get PLANNING!
 
+## Deployed Heroku link: https://nitetinerary.herokuapp.com/
+
 ## Installation
 
 1. Clone [Nite-tinerary](https://github.com/imjvdn/DUFinalProject) to your computer.
@@ -26,6 +28,7 @@ $ npm install
 $ cd client 
 $ npm install
 ```
+![](/client/public/home-img.png)
 
 ## APIs
 
